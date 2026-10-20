@@ -35,6 +35,18 @@ html,body{overscroll-behavior:none}#app{height:100vh;height:100dvh}.menu{padding
 @media(max-width:950px){.hud{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px}.order{max-width:none}.order strong{font-size:16px}.tools{position:static;grid-column:1/-1;justify-content:flex-end;margin:0;gap:6px}.tools button{min-height:38px;padding:8px 12px}.tools .sound{margin-right:auto}.stats{min-width:114px}.tip{display:none}.basket-box{min-width:143px}.help-button{min-height:44px}.level{font-size:12px}}
 @media(max-height:500px) and (orientation:landscape){.hud{top:max(4px,env(safe-area-inset-top))}.order{padding:5px 15px}.order strong{font-size:15px}.order small{font-size:8px}.stats{padding:5px 10px}.stat b{font-size:18px}.tools button{min-height:36px;padding:7px 10px}.footer{bottom:max(4px,env(safe-area-inset-bottom))}.basket-box{padding:4px 10px}.basket-art{height:30px;width:48px}.basket-label b{font-size:18px}.basket-label small{font-size:9px}.help-button{padding:6px 12px;font-size:12px;min-height:42px}.levels{margin:8px 0 5px}.level{padding:7px;min-height:42px}.menu .lead{margin:6px auto}.menu .card{padding:12px 22px}.play-overlay .panel{padding:20px}.play-overlay h2{font-size:23px}.rotation-icon{font-size:40px}}
 @media(prefers-reduced-motion:reduce){.rotation-icon span{animation:none;transform:rotate(90deg)}}
+/* Plein écran : une ligne tactile, le reste de la hauteur appartient à la plage. */
+#compact-hud{position:absolute;z-index:6;top:env(safe-area-inset-top,0px);left:env(safe-area-inset-left,0px);right:env(safe-area-inset-right,0px);height:52px;display:grid;grid-template-columns:minmax(0,1fr) auto auto 44px 44px;align-items:center;gap:14px;padding:3px 12px;background:linear-gradient(100deg,#a76d41f7,#c68c54f7);border-bottom:2px solid #8b603e;box-shadow:0 3px 9px #334f4629;color:#fff7df}
+.compact-family{display:flex;align-items:center;gap:8px;min-width:0;white-space:nowrap;text-shadow:0 1px 2px #65422d}.compact-family svg{width:25px;height:26px;flex:none}.compact-family strong{font-size:clamp(17px,1.9vw,25px);font-weight:850;letter-spacing:-.025em;line-height:1.15}.compact-family.announcing{visibility:hidden}
+.compact-shells{display:flex;align-items:center;gap:3px;--shell-size:19px}.shell-slot{display:block;flex:none;width:var(--shell-size);height:26px;opacity:.24;filter:saturate(.45);transform-origin:center}.shell-slot svg{width:100%;height:100%;display:block}.shell-slot.filled{opacity:1;filter:none}.compact-time{font-size:21px;font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1}.compact-time.urgent{color:#ffdda4}.compact-time.paused{opacity:.75}
+.compact-action{width:44px;height:44px;padding:10px;border-radius:10px;color:#fff8dd;background:#fff3d71f;box-shadow:inset 0 0 0 1px #fff0c955;display:flex;align-items:center;justify-content:center}.compact-action svg{width:23px;height:23px;pointer-events:none}.compact-action[aria-expanded=true]{background:#fff3d73d}
+.compact-fullscreen #game>.hud,.compact-fullscreen #game>.footer{display:none}.compact-fullscreen #field{left:max(4px,env(safe-area-inset-left));right:max(4px,env(safe-area-inset-right))}.compact-fullscreen .toast{font-size:12px;padding:7px 11px;top:calc(var(--field-top) + 4px);max-width:90%;box-shadow:0 3px 9px #173e4926}
+#compact-menu{position:absolute;z-index:7;right:max(8px,env(safe-area-inset-right));top:calc(env(safe-area-inset-top,0px) + 58px);width:230px;max-width:calc(100% - 16px);max-height:calc(100dvh - 76px - env(safe-area-inset-bottom,0px));overflow:auto;padding:10px;border-radius:15px;background:linear-gradient(#fff8e5fa,#f9e6bffa);box-shadow:0 8px 24px #274b4540;border:2px solid #d6b77b}#compact-menu p{margin:3px 6px 8px;font-size:12px;line-height:1.5;color:#4c6a5b}#compact-menu button{display:block;width:100%;min-height:40px;text-align:left;border:0;border-top:1px solid #d7bd8d66;border-radius:5px;background:transparent;color:var(--ink);font-weight:700;padding:9px 10px;font-size:13px}#compact-menu button:hover{background:#d7e5cd70}.compact-fullscreen .shell-slot.flash{animation:compact-fill .3s ease-out}.compact-fullscreen .compact-shells.collecting{animation:basket-bounce .35s ease-out}
+@keyframes compact-fill{50%{transform:translateY(-3px) scale(1.16)}}
+@media(max-width:950px),(max-height:500px){#compact-hud{height:46px;grid-template-columns:minmax(0,1fr) auto auto 40px 40px;gap:8px;padding:2px 8px}.compact-family{gap:5px}.compact-family svg{width:21px;height:23px}.compact-family strong{font-size:18px}.compact-shells{--shell-size:14px;gap:2px}.shell-slot{height:23px}.compact-time{font-size:18px}.compact-action{width:40px;height:40px;padding:9px}.compact-action svg{width:22px;height:22px}#compact-menu{top:calc(env(safe-area-inset-top,0px) + 51px)}}
+@media(max-width:600px){#compact-hud{grid-template-columns:minmax(0,1fr) auto auto 36px 36px;gap:5px;padding:2px 6px}.compact-family strong{font-size:16px}.compact-family svg{width:19px}.compact-shells{--shell-size:12px;gap:1px}.compact-time{font-size:16px}.compact-action{width:36px;height:40px;padding:8px}}
+@media(max-width:450px){#compact-hud{gap:3px;padding-inline:4px}.compact-family strong{font-size:14px}.compact-family{gap:3px}.compact-shells{--shell-size:10px;gap:1px}.compact-time{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.shell-slot.flash{animation:none}}
 </style>
 </head>
 <body>
@@ -48,7 +60,21 @@ html,body{overscroll-behavior:none}#app{height:100vh;height:100dvh}.menu{padding
 <section id="menu" class="screen menu" aria-labelledby="title">
  <div class="card"><div class="eyebrow">Le restaurant de la plage</div><h1 id="title">Triangles<br>& <em>Coquillages</em></h1><p class="lead">Le chef a besoin de toi ! Récolte les bons triangles.<br><b>Observe les codages, pas seulement la forme.</b></p><div class="hero" id="hero" aria-hidden="true"></div><span class="mode-label">Comment veux-tu lire les triangles ?</span><div class="modes" role="group" aria-label="Mode de codage"><button class="mode" data-mode="sides" aria-pressed="true">Les côtés<small>Traits identiques</small></button><button class="mode" data-mode="angles" aria-pressed="false">Les angles<small>Arcs identiques</small></button><button class="mode" data-mode="mixed" aria-pressed="false">Le mélange<small>Une figure, un codage</small></button></div><div class="levels" role="group" aria-label="Niveau de vitesse"><button class="level" data-level="1" aria-pressed="true">Niveau 1<small>Plage tranquille</small></button><button class="level" data-level="2" aria-pressed="false">Niveau 2<small>Plage agitée</small></button></div><button id="play" class="primary">À la pêche aux triangles ! →</button><div class="menu-actions"><button id="rules" class="secondary">Comment jouer ?</button><button class="sound secondary">Son : activé</button><button class="fullscreen secondary">Plein écran</button></div><p id="record" class="record"></p><div class="tagline">5 commandes · 10 coquillages par panier · 10 minutes</div></div>
 </section>
-<section id="game" class="screen" hidden aria-label="Partie en cours"><header class="hud"><div class="order"><small id="order-number"></small><strong id="order-title"></strong></div><div class="stats"><div class="stat"><small>Score</small><b id="score">0</b></div><div class="stat"><small>Temps</small><b id="time">10:00</b></div></div><div class="tools"><button class="sound" aria-label="Activer ou couper les sons">Son : oui</button><button id="pause">Pause</button><button id="end">Terminer</button><button class="fullscreen" hidden>Plein écran</button><button id="back">Menu</button></div></header><div class="portrait">↔ Tourne ton téléphone pour profiter d’une plus grande plage.</div><div id="field" aria-label="Créatures triangulaires à récolter"></div><footer class="footer"><div class="basket-box"><div id="basket-art" class="basket-art" aria-hidden="true"><div id="basket-shells" class="basket-shells"></div></div><div class="basket-label"><small>TON PANIER</small><b id="basket">0 / 10</b></div></div><button id="help" class="help-button">Voir à quoi ça ressemble ?<small>Aide : −10 points · le temps continue</small></button><div class="tip" id="mode-tip"></div></footer><div id="toast" class="toast" role="status" hidden></div></section>
+<section id="game" class="screen" hidden aria-label="Partie en cours">
+<header id="compact-hud" hidden aria-label="Commande et progression">
+ <div id="compact-family" class="compact-family"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3 26 24H2Z" fill="#fff0bc" stroke="#715234" stroke-width="2" stroke-linejoin="round"/></svg><strong id="compact-family-name"></strong></div>
+ <div id="compact-shells" class="compact-shells" role="progressbar" aria-label="Coquillages du panier" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
+ <time id="compact-time" class="compact-time" aria-label="Temps restant">10:00</time>
+ <button id="compact-pause" class="compact-action" title="Pause" aria-label="Pause"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="5" y="3" width="5" height="18" rx="1.5"/><rect x="14" y="3" width="5" height="18" rx="1.5"/></svg></button>
+ <button id="compact-menu-toggle" class="compact-action" title="Autres commandes" aria-label="Autres commandes" aria-expanded="false" aria-controls="compact-menu"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+</header>
+<div id="compact-menu" hidden role="group" aria-label="Autres commandes">
+ <p id="compact-context"></p><p>Score : <b id="compact-score">0</b></p>
+ <button id="compact-help" title="Aide, moins dix points">Voir l’aide · −10 points</button>
+ <button class="sound" title="Activer ou couper les sons">Son : activé</button>
+ <button id="compact-end" title="Terminer la partie">Terminer la partie</button>
+ <button class="fullscreen" title="Quitter le plein écran">Quitter le plein écran</button>
+</div><header class="hud"><div class="order"><small id="order-number"></small><strong id="order-title"></strong></div><div class="stats"><div class="stat"><small>Score</small><b id="score">0</b></div><div class="stat"><small>Temps</small><b id="time">10:00</b></div></div><div class="tools"><button class="sound" aria-label="Activer ou couper les sons">Son : oui</button><button id="pause">Pause</button><button id="end">Terminer</button><button class="fullscreen" hidden>Plein écran</button><button id="back">Menu</button></div></header><div class="portrait">↔ Tourne ton téléphone pour profiter d’une plus grande plage.</div><div id="field" aria-label="Créatures triangulaires à récolter"></div><footer class="footer"><div class="basket-box"><div id="basket-art" class="basket-art" aria-hidden="true"><div id="basket-shells" class="basket-shells"></div></div><div class="basket-label"><small>TON PANIER</small><b id="basket">0 / 10</b></div></div><button id="help" class="help-button">Voir à quoi ça ressemble ?<small>Aide : −10 points · le temps continue</small></button><div class="tip" id="mode-tip"></div></footer><div id="toast" class="toast" role="status" hidden></div></section>
 <section id="results" class="screen menu" hidden aria-labelledby="result-title"><div class="card"><div class="eyebrow">Le service est terminé</div><h2 id="result-title"></h2><div id="final-score" class="final-score"></div><div id="result-detail" class="result-grid"></div><p id="best-result"></p><div class="nickname"><label for="nickname">Ton pseudo</label><input id="nickname" maxlength="20" placeholder="Petit crabe" autocomplete="off"><button id="save-name" class="secondary">Signer le record</button></div><p id="save-message" class="record" role="status"></p><button id="replay" class="primary">Rejouer →</button><button id="result-menu" class="secondary">Retour au menu</button></div></section>
 <div id="modal" class="overlay" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title"></h2><div id="dialog-content"></div><button id="close-dialog" class="primary close">C’est compris !</button></section></div>
 </main>
@@ -73,6 +99,20 @@ const LEVEL_CONFIG=Object.freeze({
  1:Object.freeze({name:'Plage tranquille',fish:1,crab:1,emergence:1,presence:1,burial:1,renewal:1,rotation:1,rotationExtra:0}),
  2:Object.freeze({name:'Plage agitée',fish:1.6,crab:1.5,emergence:1.4,presence:.7,burial:1.5,renewal:1.4,rotation:1.25,rotationExtra:.08})
 });
+// Répartition et protection des nouvelles figures, indépendantes des mathématiques.
+const RENEWAL_CONFIG=Object.freeze({desktopLimit:28,mobileLimit:14,desktopArea:30000,mobileArea:18000,bodyRadius:.38,selectedAreaMs:4800,touchAreaMs:1800,newFigureMs:260,afterAnnouncementMs:160,touchRadius:30,selectionMargin:18,safetyGoodMs:900});
+const SHORT_LABELS={any:'Quelconque',iso:'Isocèle',equ:'Équilatéral',right:'Rectangle',rightIso:'Rectangle isocèle'};
+function chooseSpawnFamily(order,visible,target,now,state,rng=Math.random){
+ if(state.order!==order){state.order=order;state.good=[];state.bad=[];state.lastGoodAt=-Infinity}
+ const good=FAMILIES.filter(f=>TABLE[f].includes(order)),bad=FAMILIES.filter(f=>!TABLE[f].includes(order));
+ const count=visible.filter(c=>c.state!=='leaving'&&TABLE[c.triangle.family].includes(order)).length;
+ const desired=Math.max(1,Math.round(target*GAME_CONFIG.correctRatio));
+ const chance=Math.max(.16,Math.min(.65,GAME_CONFIG.correctRatio+(desired-count)*.09));
+ const takeGood=count===0&&now-state.lastGoodAt>=RENEWAL_CONFIG.safetyGoodMs||rng()<chance;
+ const key=takeGood?'good':'bad',pool=takeGood?good:bad;
+ if(!state[key].length){state[key]=pool.slice();for(let i=state[key].length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[state[key][i],state[key][j]]=[state[key][j],state[key][i]]}}
+ const family=state[key].pop();if(takeGood)state.lastGoodAt=now;return family;
+}
 // Horloge virtuelle unique : toutes les dates de créatures, vagues, transitions
 // et effets utilisent cette horloge. Les causes de pause peuvent se superposer.
 class GameClock{
@@ -211,10 +251,11 @@ function habitatBounds(width,height,radius,habitat){
  const bottom=habitat==='sea'?shore-radius*.55:height-radius-4;
  return{left:Math.min(edge,width/2),right:Math.max(width/2,width-edge),top:Math.min(top,height/2),bottom:Math.max(top,bottom)};
 }
-function organicPosition(width,height,radius,habitat,others,rng=Math.random){
+function organicPosition(width,height,radius,habitat,others,rng=Math.random,excluded=[]){
  const b=habitatBounds(width,height,radius,habitat);let best=null,bestRoom=-Infinity;
  for(let i=0;i<GAME_CONFIG.placementAttempts;i++){
   const p={x:b.left+rng()*(b.right-b.left),y:b.top+rng()*(b.bottom-b.top)};
+  if(excluded.some(zone=>Math.hypot(p.x-zone.x,p.y-zone.y)<radius+zone.radius))continue;
   const room=others.reduce((m,c)=>Math.min(m,Math.hypot(p.x-c.x,p.y-c.y)-radius-c.radius-GAME_CONFIG.bodyGap),Infinity);
   // Un choix dans la première région suffisamment dégagée garde la répartition naturelle.
   if(room>=10)return p;
@@ -222,7 +263,7 @@ function organicPosition(width,height,radius,habitat,others,rng=Math.random){
  }
  return bestRoom>=0?best:null;
 }
-function densityFor(width,height,mobile){return Math.min(mobile?GAME_CONFIG.targetMobile:GAME_CONFIG.targetDesktop,Math.max(3,Math.floor(width*height/(mobile?19000:30000))))}
+function densityFor(width,height,mobile){return Math.min(mobile?RENEWAL_CONFIG.mobileLimit:RENEWAL_CONFIG.desktopLimit,Math.max(3,Math.floor(width*height/(mobile?RENEWAL_CONFIG.mobileArea:RENEWAL_CONFIG.desktopArea))))}
 function motionStep(c,others,width,height,dt,time){
  if(c.skin==='shell'||c.focused||c.state!=='active'||c.still||c.parked)return;
  const b=habitatBounds(width,height,c.radius,c.habitat);
@@ -240,9 +281,27 @@ function motionStep(c,others,width,height,dt,time){
  if(ny===b.top||ny===b.bottom)c.vy*=-1;
  c.walking=speed>0;c.x=nx;c.y=ny;
 }
-globalThis.TrianglesGame={GAME_CONFIG,LEVEL_CONFIG,GameClock,GameFlow,FAMILIES,TABLE,geometry,properties,makeTriangle,GameSession,runDiagnostics,organicPosition,habitatBounds,densityFor,motionStep};
+globalThis.TrianglesGame={GAME_CONFIG,LEVEL_CONFIG,RENEWAL_CONFIG,SHORT_LABELS,chooseSpawnFamily,GameClock,GameFlow,FAMILIES,TABLE,geometry,properties,makeTriangle,GameSession,runDiagnostics,organicPosition,habitatBounds,densityFor,motionStep};
 // 7. Interface, sons et sauvegarde locale.
 const $=id=>document.getElementById(id), field=$('field');let mode='sides',level=1,session=null,creatures=[],targetDensity=15,lastFrame=0,nextSpawn=0,transition=null,toastUntil=0,soundOn=true,audio=null,modalFocus=null,heldPointers=new Set(),flowIndex=0,layoutKey='',record=null,fieldRect={left:0,top:0,width:0,height:0},tracks=[],lastHud=0;
+let familyState={},recentTouches=[],recentPicks=[],compactMenuUntil=0;
+const compactShells=[];
+function compactMode(){return !!document.fullscreenElement&&!$('game').hidden}
+function closeCompactMenu(restoreFocus=false){$('compact-menu').hidden=true;$('compact-menu-toggle').setAttribute('aria-expanded','false');compactMenuUntil=0;if(restoreFocus)$('compact-menu-toggle').focus({preventScroll:true})}
+function syncCompactMode(){const active=compactMode();document.body.classList.toggle('compact-fullscreen',active);$('compact-hud').hidden=!active;if(!active)closeCompactMenu()}
+function basketReceiver(){return compactMode()?$('compact-shells'):$('basket-art')}
+function basketTarget(index=null){return compactMode()?(compactShells[index??((session?.basket||GAME_CONFIG.perOrder)-1)]||$('compact-shells')):$('basket-art')}
+function renderCompactBasket(count){
+ if(!compactShells.length)for(let i=0;i<GAME_CONFIG.perOrder;i++){const shell=document.createElement('span');shell.className='shell-slot';shell.setAttribute('aria-hidden','true');shell.innerHTML='<svg viewBox="0 0 22 25" aria-hidden="true"><path d="M4 19C-3 13 2 4 7 5Q11-2 15 5C22 4 26 13 18 19L14 23H8Z" fill="#f5cf9c" stroke="#806044" stroke-width="1.2" stroke-linejoin="round"/><path d="M11 21V5M9 21 5 8M13 21 17 8M8 20 3 13M14 20 19 13" stroke="#fff8de" stroke-width="1.1" fill="none"/><path d="M7 21H15L14 24H8Z" fill="#d9a66d" stroke="#806044" stroke-width=".8"/></svg>';$('compact-shells').append(shell);compactShells.push(shell)}
+ const previous=Number($('compact-shells').dataset.count||0);
+ compactShells.forEach((shell,i)=>{shell.classList.toggle('filled',i<count);if(i>=previous&&i<count&&!reduced&&compactMode()&&!transition){shell.classList.remove('flash');void shell.offsetWidth;shell.classList.add('flash')}});
+ $('compact-shells').dataset.count=String(count);$('compact-shells').setAttribute('aria-valuenow',String(count));$('compact-shells').setAttribute('aria-valuetext',`${count} coquillages sur ${GAME_CONFIG.perOrder}`);
+}
+function exclusionZones(now){
+ recentTouches=recentTouches.filter(p=>now-p.at<RENEWAL_CONFIG.touchAreaMs);recentPicks=recentPicks.filter(p=>now-p.at<RENEWAL_CONFIG.selectedAreaMs);
+ return [...recentTouches.map(p=>({...p,radius:RENEWAL_CONFIG.touchRadius})),...recentPicks.map(p=>({...p,radius:p.radius+RENEWAL_CONFIG.selectionMargin}))];
+}
+function rememberTouch(e){if(!activeGame()||!e.target?.closest?.('#field')||!Number.isFinite(e.clientX)||!Number.isFinite(e.clientY))return;recentTouches.push({x:e.clientX-fieldRect.left,y:e.clientY-fieldRect.top,at:gameNow()});recentTouches=recentTouches.slice(-48)}
 const gameClock=new GameClock(performance.now()),flow=new GameFlow(gameClock);
 const gameNow=()=>gameClock.now(performance.now());
 let scheduledEffects=[],pausedAnimations=new Set(),lastWall=performance.now(),interruptionFocus=null;
@@ -250,6 +309,7 @@ function later(callback,delay){scheduledEffects.push({at:gameNow()+delay,callbac
 function runEffects(now){const ready=scheduledEffects.filter(e=>e.at<=now);scheduledEffects=scheduledEffects.filter(e=>e.at>now);for(const e of ready)e.callback()}
 function activeGame(){return !!session&&!session.finished}
 function hold(reason,wall=performance.now()){
+ closeCompactMenu();
  if(!gameClock.frozen)interruptionFocus=document.activeElement;
  gameClock.pause(reason,wall);heldPointers.clear();for(const c of creatures)c.press=null;
  if(audio?.state==='running')audio.suspend().catch(()=>{});
@@ -285,12 +345,12 @@ function tone(type){if(!soundOn||gameClock.frozen)return;try{audio=audio||new(wi
 function toggleSound(){soundOn=!soundOn;document.querySelectorAll('.sound').forEach(b=>{b.textContent=`Son : ${soundOn?'activé':'coupé'}`;b.setAttribute('aria-pressed',String(soundOn))});if(soundOn)tone('good')}
 document.querySelectorAll('.sound').forEach(b=>{b.setAttribute('aria-pressed','true');b.onclick=toggleSound});
 let fullscreenFailed=false;
-function updateFullscreen(){const available=!fullscreenFailed&&document.fullscreenEnabled===true&&typeof document.documentElement.requestFullscreen==='function'&&typeof document.exitFullscreen==='function';document.querySelectorAll('.fullscreen').forEach(b=>{b.hidden=!available&&!document.fullscreenElement;b.textContent=document.fullscreenElement?'Quitter le plein écran':'Plein écran'})}
+function updateFullscreen(){const available=!fullscreenFailed&&document.fullscreenEnabled===true&&typeof document.documentElement.requestFullscreen==='function'&&typeof document.exitFullscreen==='function';document.querySelectorAll('.fullscreen').forEach(b=>{b.hidden=!available&&!document.fullscreenElement;b.textContent=document.fullscreenElement?'Quitter le plein écran':'Plein écran'});syncCompactMode()}
 document.querySelectorAll('.fullscreen').forEach(b=>b.onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{fullscreenFailed=true}updateFullscreen();syncDevice()});
 document.addEventListener('fullscreenchange',()=>{updateFullscreen();syncDevice()});updateFullscreen();
 document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll('.mode').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
 document.querySelectorAll('.level').forEach(b=>b.onclick=()=>{level=Number(b.dataset.level);document.querySelectorAll('.level').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));loadRecord();showRecord()});
-function displayScreen(id){for(const x of ['menu','game','results'])$(x).hidden=x!==id;flow.phase=id==='menu'?'menu':id==='results'?'finished':'playing'}
+function displayScreen(id){for(const x of ['menu','game','results'])$(x).hidden=x!==id;flow.phase=id==='menu'?'menu':id==='results'?'finished':'playing';syncCompactMode()}
 function toast(message,duration=2.3){$('toast').textContent=message;$('toast').hidden=false;toastUntil=gameNow()+duration*1000}
 function updateHUD(now){
  if(!session)return;const delivering=transition?.kind==='validation',basket=delivering?GAME_CONFIG.perOrder:session.basket;
@@ -300,18 +360,21 @@ function updateHUD(now){
  const index=delivering?Math.max(0,session.index-1):session.index;
  if(index<5){$('order-number').textContent=`NIVEAU ${session.level||1} · COMMANDE ${index+1} / 5 · ${['DÉCOUVERTE','FACILE','INTERMÉDIAIRE','DIFFICILE','EXPERT'][index]}`;$('order-title').textContent=LABELS[session.order[index]]}
  const shells=$('basket-shells');if(shells.dataset.count!==String(basket)){shells.dataset.count=String(basket);shells.innerHTML='<span></span>'.repeat(basket)}
+ renderCompactBasket(basket);$('compact-score').textContent=$('score').textContent;$('compact-time').textContent=$('time').textContent;$('compact-time').classList.toggle('urgent',r<=60);$('compact-time').classList.toggle('paused',!!transition||gameClock.frozen);
+ if(index<5){$('compact-family-name').textContent=SHORT_LABELS[session.order[index]];$('compact-family').setAttribute('aria-label',LABELS[session.order[index]]);$('compact-context').textContent=`Niveau ${session.level||1} · Commande ${index+1} / 5`}
  $('help').disabled=!!transition||gameClock.frozen;
+ $('compact-help').disabled=$('help').disabled;
 }
-function clearCreatures(){for(const c of creatures)c.el.remove();creatures=[]}
+function clearCreatures(){for(const c of creatures)c.el.remove();creatures=[];familyState={}}
 function compactScreen(){return innerWidth<=950||innerHeight<=500}
 function layout(){
  if(isPhonePortrait())return;
- const app=$('app').getBoundingClientRect(),hud=document.querySelector('.hud').getBoundingClientRect(),foot=document.querySelector('.footer').getBoundingClientRect();
- $('app').style.setProperty('--field-top',`${Math.ceil(hud.bottom-app.top+7)}px`);$('app').style.setProperty('--field-bottom',`${Math.ceil(app.bottom-foot.top+9)}px`);
+ const app=$('app').getBoundingClientRect(),hud=(compactMode()?$('compact-hud'):document.querySelector('.hud')).getBoundingClientRect(),foot=document.querySelector('.footer').getBoundingClientRect();
+ $('app').style.setProperty('--field-top',`${Math.ceil(hud.bottom-app.top+(compactMode()?3:7))}px`);$('app').style.setProperty('--field-bottom',compactMode()?'max(4px, env(safe-area-inset-bottom, 0px))':`${Math.ceil(app.bottom-foot.top+9)}px`);
  const rect=field.getBoundingClientRect(),w=rect.width,h=rect.height,key=`${w}/${h}`,old=fieldRect;fieldRect=rect;if(key===layoutKey)return;
  layoutKey=key;targetDensity=densityFor(w,h,compactScreen());const placed=[],now=gameNow();
  for(const c of creatures){
-  c.originalSize=c.originalSize||c.size;c.size=Math.min(c.originalSize,compactScreen()?145:GAME_CONFIG.maxSize,Math.max(102,h*.65));c.radius=c.size*.345;
+  c.originalSize=c.originalSize||c.size;c.size=Math.min(c.originalSize,compactScreen()?145:GAME_CONFIG.maxSize,Math.max(102,h*.65));c.radius=c.size*RENEWAL_CONFIG.bodyRadius;
   c.el.style.width=c.el.style.height=`${c.size}px`;const b=habitatBounds(w,h,c.radius,c.habitat);
   const suggested={x:clamp(c.x*w/Math.max(1,old.width),b.left,b.right),y:clamp(c.y*h/Math.max(1,old.height),b.top,b.bottom)};
   let p=placed.every(o=>distance(suggested,o)>=c.radius+o.radius+GAME_CONFIG.bodyGap)?suggested:organicPosition(w,h,c.radius,c.habitat,placed);
@@ -319,23 +382,25 @@ function layout(){
   if(p){if(c.parked)restoreCreatureTime(c,now);Object.assign(c,p);c.parked=false;c.el.hidden=false;placed.push(c)}
   else{if(!c.parked)c.parkedAt=now;c.parked=true;c.el.hidden=true}
  }
- tracks=[];sceneDirty=true;
+ tracks=[];recentTouches=[];recentPicks=[];sceneDirty=true;
 }
-function restoreCreatureTime(c,now){const elapsed=now-c.parkedAt;for(const key of ['born','expires','leaveAt','lockedUntil','sickUntil','lastTrack'])if(Number.isFinite(c[key]))c[key]+=elapsed}
-function resetEffects(){scheduledEffects=[];for(const el of document.querySelectorAll('.collection-flight,.ejected-shell'))el.remove();$('basket-art').classList.remove('delivery','collecting');pausedAnimations.clear()}
-function cancelTransition(){transition=null;$('announcement').hidden=true;$('announcement').innerHTML='';document.querySelector('.order').classList.remove('announcing');field.classList.remove('transitioning');field.inert=gameClock.frozen;flow.phase=activeGame()?'playing':flow.phase;$('help').disabled=gameClock.frozen}
+function restoreCreatureTime(c,now){const elapsed=now-c.parkedAt;for(const key of ['born','readyAt','expires','leaveAt','lockedUntil','sickUntil','lastTrack'])if(Number.isFinite(c[key]))c[key]+=elapsed}
+function resetEffects(){scheduledEffects=[];for(const el of document.querySelectorAll('.collection-flight,.ejected-shell'))el.remove();$('basket-art').classList.remove('delivery','collecting');$('compact-shells').classList.remove('delivery','collecting');pausedAnimations.clear()}
+function cancelTransition(){transition=null;$('announcement').hidden=true;$('announcement').innerHTML='';document.querySelector('.order').classList.remove('announcing');$('compact-family').classList.remove('announcing');field.classList.remove('transitioning');field.inert=gameClock.frozen;flow.phase=activeGame()?'playing':flow.phase;$('help').disabled=gameClock.frozen}
 function start(){closeDialog();cancelTransition();resetEffects();heldPointers.clear();clearCreatures();gameClock.reset(performance.now());lastWall=performance.now();lastFrame=0;const now=gameNow();session=new GameSession(GAME_CONFIG,now);session.level=level;flowIndex=0;displayScreen('game');layoutKey='';layout();$('mode-tip').textContent=`Niveau ${level} · Mode ${mode==='sides'?'côtés':mode==='angles'?'angles':'mixte'} · Compare les marques identiques.`;$('toast').hidden=true;beginAnnouncement(now);syncDevice();updateHUD(now);tone('order')}
 function menu(){closeDialog();cancelTransition();resetEffects();clearCreatures();if(session&&!session.finished)session.finished=true;gameClock.reset(performance.now());lastWall=performance.now();lastFrame=0;displayScreen('menu');sceneDirty=true;loadRecord();showRecord();syncDevice()}
 function beginAnnouncement(now){
+ closeCompactMenu();$('compact-family').classList.add('announcing');
  session.pause(now);flow.phase='announcement';field.inert=true;field.classList.add('transitioning');document.querySelector('.order').classList.add('announcing');
  $('announcement').hidden=false;$('announcement').innerHTML=`<div class="big-board"><small>Nouvelle commande !</small><strong>${LABELS[session.order[session.index]]}</strong></div>`;
  transition={kind:'announcement',started:now,duration:(GAME_CONFIG.orderHold+GAME_CONFIG.orderFly)*1000,board:$('announcement').firstElementChild};nextSpawn=now;
 }
 function beginValidation(now){
+ closeCompactMenu();
  session.pause(now);flow.phase='validation';field.inert=true;field.classList.add('transitioning');clearCreatures();
  $('announcement').hidden=false;$('announcement').innerHTML='<div class="validation-board"><div class="delivery-basket" aria-hidden="true">🧺</div><strong>Bravo !</strong><p>Ton panier est validé !</p></div>';
  transition={kind:'validation',started:now,duration:GAME_CONFIG.validationDuration*1000,board:$('announcement').firstElementChild};
- const box=$('basket-art');box.classList.add('delivery');later(()=>box.classList.remove('delivery'),700);
+ const box=basketReceiver();box.classList.add('delivery');later(()=>box.classList.remove('delivery'),700);
  for(let i=0;i<24;i++){const confetti=document.createElement('i');confetti.className='confetti';confetti.style.background=pick(['#f4cc6a','#66bfa6','#f08c70','#fff6d1']);confetti.style.left='50%';confetti.style.top='50%';$('announcement').append(confetti);confetti.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${rand(-230,230)}px,${rand(-120,180)}px) rotate(${rand(-300,300)}deg)`,opacity:0}],{duration:1300,easing:'cubic-bezier(.15,.6,.4,1)',fill:'forwards'})}
  tone('order');updateHUD(now);
 }
@@ -343,15 +408,18 @@ function animateTransition(now){
  if(!transition)return;const tr=transition,elapsed=now-tr.started,p=clamp(elapsed/tr.duration,0,1);
  if(tr.kind==='announcement'){
   const fly=clamp((elapsed-GAME_CONFIG.orderHold*1000)/(GAME_CONFIG.orderFly*1000),0,1),e=fly*fly*(3-2*fly);
-  const target=document.querySelector('.order').getBoundingClientRect(),board=tr.board;
+  const target=(compactMode()?$('compact-family'):document.querySelector('.order')).getBoundingClientRect(),board=tr.board;
   const dx=target.left+target.width/2-innerWidth/2,dy=target.top+target.height/2-innerHeight/2;
   const bounce=elapsed<400?1+.08*Math.sin(elapsed/400*Math.PI)*Math.exp(-elapsed/700):1;
   board.style.transform=`translate(calc(-50% + ${dx*e}px),calc(-50% + ${dy*e}px)) scale(${bounce+(target.width/board.offsetWidth-bounce)*e},${bounce+(target.height/board.offsetHeight-bounce)*e})`;
   board.style.opacity=String(Math.min(1,elapsed/100));
  }else{tr.board.style.transform=`translate(-50%,-50%) scale(${Math.min(1,p*5)+Math.sin(p*Math.PI)*.03})`;const basket=tr.board.querySelector('.delivery-basket');basket.style.transform=`translate(${Math.max(0,p-.55)*100}px,${-Math.sin(p*Math.PI)*12}px) rotate(${Math.sin(p*Math.PI)*-8}deg)`}
- if(p>=1){if(tr.kind==='validation'){if(session.completed===5){cancelTransition();finish(true,now)}else beginAnnouncement(now)}else{cancelTransition();session.resume(now);for(const c of creatures){c.born=now-c.emergence*1000;c.expires=now+c.lifetime;c.state='active'}updateHUD(now)}}
+ if(p>=1){if(tr.kind==='validation'){if(session.completed===5){cancelTransition();finish(true,now)}else beginAnnouncement(now)}else{cancelTransition();session.resume(now);for(const c of creatures){c.born=now-c.emergence*1000;c.expires=now+c.lifetime;c.readyAt=now+RENEWAL_CONFIG.afterAnnouncementMs;c.state='active'}updateHUD(now)}}
 }
 $('play').onclick=start;$('replay').onclick=start;$('pause').onclick=pauseGame;$('resume').onclick=resumeGame;$('end').onclick=requestEnd;$('pause-end').onclick=requestEnd;$('continue').onclick=continueGame;$('confirm-end').onclick=endGame;$('back').onclick=requestEnd;$('result-menu').onclick=menu;
+$('compact-pause').onclick=pauseGame;
+$('compact-menu-toggle').onclick=()=>{const open=$('compact-menu').hidden;$('compact-menu').hidden=!open;$('compact-menu-toggle').setAttribute('aria-expanded',String(open));compactMenuUntil=open?gameNow()+5500:0};
+$('compact-help').onclick=()=>{closeCompactMenu();$('help').onclick()};$('compact-end').onclick=()=>{closeCompactMenu();requestEnd()};
 function saveRecord(newRecord){try{localStorage.setItem(`triangles-coquillages-record-v2-level-${session?.level||level}`,JSON.stringify(newRecord));return true}catch{return false}}
 function finish(won,now,reason='normal'){
  won=won&&session.completed===GAME_CONFIG.orderCount;
@@ -379,20 +447,21 @@ $('save-name').onclick=()=>{if(!session?.newRecord)return;record.name=$('nicknam
 function spawn(now){
  const visible=creatures.filter(c=>!c.parked);
  if(visible.length>=targetDensity||heldPointers.size||session.index>=5||gameClock.frozen)return;
- for(const c of creatures.filter(c=>c.parked)){const p=organicPosition(fieldRect.width,fieldRect.height,c.radius,c.habitat,visible);if(p){restoreCreatureTime(c,now);Object.assign(c,p);c.parked=false;c.el.hidden=false;return}}
+ const excluded=exclusionZones(now);
+ for(const c of creatures.filter(c=>c.parked)){const p=organicPosition(fieldRect.width,fieldRect.height,c.radius,c.habitat,visible,Math.random,excluded);if(p){restoreCreatureTime(c,now);Object.assign(c,p);c.readyAt=now+RENEWAL_CONFIG.newFigureMs;c.parked=false;c.el.hidden=false;return}}
  const settings=LEVEL_CONFIG[session.level];
- const order=session.order[session.index],goodFamilies=FAMILIES.filter(f=>TABLE[f].includes(order)),badFamilies=FAMILIES.filter(f=>!TABLE[f].includes(order));
- const correctCount=visible.filter(c=>c.state!=='leaving'&&c.triangle.accepted.includes(order)).length;
- let family;if(correctCount<Math.max(1,Math.round(targetDensity*GAME_CONFIG.correctRatio)))family=pick(goodFamilies);else if(flowIndex++%7===0)family=FAMILIES[Math.floor(flowIndex/7)%5];else family=pick(badFamilies);
- const seaCount=visible.filter(c=>c.habitat==='sea').length,habitat=seaCount<Math.round(targetDensity*GAME_CONFIG.seaRatio)?'sea':'sand';
- let skin=habitat==='sea'?pick(['fish','fish','fish','turtle']):pick(['shell','shell','crab']);
- const triangle=makeTriangle(family,mode,session.index),mobile=compactScreen(),minSize=mobile?GAME_CONFIG.mobileMinSize:GAME_CONFIG.minSize;
- const maxSize=Math.min(GAME_CONFIG.maxSize,mobile?164:218,fieldRect.height*(habitat==='sea'?.9:1.2),fieldRect.width*.4);
- let size=rand(minSize,Math.max(minSize,maxSize)),radius=size*.345;
- let pos=organicPosition(fieldRect.width,fieldRect.height,radius,habitat,visible);
- // Sur un petit écran, une seconde tentative avec une taille lisible plus petite.
- if(!pos){size=minSize;radius=size*.345;pos=organicPosition(fieldRect.width,fieldRect.height,radius,habitat,visible)}
- if(!pos)return;
+ const order=session.order[session.index],seaCount=visible.filter(c=>c.habitat==='sea').length;
+ const preferSea=seaCount<Math.round(targetDensity*GAME_CONFIG.seaRatio),habitats=preferSea?['sea','sand']:['sand','sea'];
+ const mobile=compactScreen(),minSize=mobile?GAME_CONFIG.mobileMinSize:GAME_CONFIG.minSize;let site=null;
+ for(const habitat of habitats){
+  const skin=habitat==='sea'?pick(['fish','fish','fish','turtle']):pick(['shell','shell','crab']);
+  const maxSize=Math.min(GAME_CONFIG.maxSize,mobile?164:218,fieldRect.height*(habitat==='sea'?.9:1.2),fieldRect.width*.4);
+  for(const size of [rand(minSize,Math.max(minSize,maxSize)),minSize]){const radius=size*RENEWAL_CONFIG.bodyRadius,pos=organicPosition(fieldRect.width,fieldRect.height,radius,habitat,visible,Math.random,excluded);if(pos){site={habitat,skin,size,radius,pos};break}}
+  if(site)break;
+ }
+ if(!site)return;
+ const{habitat,skin,size,radius,pos}=site;
+ const family=chooseSpawnFamily(order,visible,targetDensity,now,familyState),triangle=makeTriangle(family,mode,session.index);
  const color=pick(skin==='crab'?['#f1a77f','#efb981','#e9a3a1']:skin==='fish'?['#f1c86c','#91cbd0','#b7c0e1','#f0b88b']:skin==='turtle'?['#bfd58d','#b3d2af']:['#f7cfb0','#f2c7bd','#f5dbac','#e7c4d4']);
  const el=document.createElement('button');el.className=`creature ${skin} unavailable`;el.type='button';el.tabIndex=-1;el.setAttribute('aria-label',`Créature triangulaire. Observe ${triangle.coding.kind==='sides'?'les côtés':'les angles'} et les éventuels carrés.`);el.innerHTML=triangleSVG(triangle,skin,color,true);el.style.width=el.style.height=`${size}px`;
  const complexity=Math.max(...triangle.coding.sides,...triangle.coding.angles),range=complexity>=3?GAME_CONFIG.visibility.complex:complexity>0||triangle.coding.right!==null?GAME_CONFIG.visibility.simple:GAME_CONFIG.visibility.none;
@@ -400,30 +469,30 @@ function spawn(now){
  const rotating=!reduced&&Math.random()<GAME_CONFIG.rotationFrequency+session.index*.1+settings.rotationExtra;
  const lifetime=rand(...visibleRange)*1000*(skin==='shell'?settings.presence:1),speedRange=skin==='fish'?GAME_CONFIG.fishSpeed:skin==='crab'?GAME_CONFIG.crabSpeed:GAME_CONFIG.turtleSpeed;
  const emergence=GAME_CONFIG.emergenceDuration/(skin==='shell'?settings.emergence:1),burial=GAME_CONFIG.burialDuration/settings.burial;
- const c={el,rig:el.querySelector('.rig'),triangle,size,originalSize:size,radius,skin,habitat,...pos,level:session.level,emergence,burial,born:now,lifetime,expires:now+lifetime+emergence*1000,state:'entering',base:rand(0,Math.PI*2),rotation:rotating?rand(.4,1)*GAME_CONFIG.rotationSpeed*(1+session.index*.25)*pick([-1,1])*settings.rotation:0,phase:rand(0,6),speed:rand(...speedRange)*(skin==='fish'?160/size:1)*(1+session.index*.10)*(skin==='fish'?settings.fish:skin==='crab'?settings.crab:1),vx:pick([-1,1]),vy:rand(-.35,.35),still:reduced||Math.random()<.12,lockedUntil:0,sickUntil:0,focused:false,lastTrack:now};
+ const c={el,rig:el.querySelector('.rig'),triangle,size,originalSize:size,radius,skin,habitat,...pos,level:session.level,emergence,burial,born:now,readyAt:now+emergence*1000+RENEWAL_CONFIG.newFigureMs,lifetime,expires:now+lifetime+emergence*1000,state:'entering',base:rand(0,Math.PI*2),rotation:rotating?rand(.4,1)*GAME_CONFIG.rotationSpeed*(1+session.index*.25)*pick([-1,1])*settings.rotation:0,phase:rand(0,6),speed:rand(...speedRange)*(skin==='fish'?160/size:1)*(1+session.index*.10)*(skin==='fish'?settings.fish:skin==='crab'?settings.crab:1),vx:pick([-1,1]),vy:rand(-.35,.35),still:reduced||Math.random()<.12,lockedUntil:0,sickUntil:0,focused:false,lastTrack:now};
  el.style.setProperty('--animation-phase',`${-c.phase}s`);el.querySelectorAll('.leg,.fin,.tail,.claw,.flipper').forEach(part=>part.style.animationDelay=`${-c.phase}s`);
- el.addEventListener('pointerdown',e=>{if(!e.target.closest('.hit')||!flow.canSelect||c.state!=='active'||heldPointers.size>1||e.isPrimary===false)return;e.preventDefault();c.press={id:e.pointerId,x:e.clientX,y:e.clientY,at:gameNow()};el.setPointerCapture?.(e.pointerId)});
+ el.addEventListener('pointerdown',e=>{if(!e.target.closest('.hit')||!flow.canSelect||c.state!=='active'||gameNow()<c.readyAt||heldPointers.size>1||e.isPrimary===false)return;e.preventDefault();c.press={id:e.pointerId,x:e.clientX,y:e.clientY,at:gameNow()};el.setPointerCapture?.(e.pointerId)});
  el.addEventListener('pointermove',e=>{if(c.press&&Math.hypot(e.clientX-c.press.x,e.clientY-c.press.y)>12)c.press=null});
  el.addEventListener('pointerup',e=>{const p=c.press;c.press=null;if(p&&p.id===e.pointerId&&Math.hypot(e.clientX-p.x,e.clientY-p.y)<=12&&gameNow()-p.at<700)selectCreature(c,gameNow())});
  el.addEventListener('pointercancel',()=>c.press=null);el.addEventListener('lostpointercapture',()=>c.press=null);
  el.addEventListener('click',e=>{if(e.detail===0&&e.pointerType===undefined)selectCreature(c,gameNow())});el.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();selectCreature(c,gameNow())}});el.addEventListener('focus',()=>{c.focused=true});el.addEventListener('blur',()=>{c.focused=false});field.append(el);creatures.push(c);
 }
 function remove(c){c.el.remove();creatures=creatures.filter(x=>x!==c)}
-function collect(c){const a=c.el.getBoundingClientRect(),b=$('basket-art').getBoundingClientRect(),p=document.createElement('div');p.className='collection-flight';p.innerHTML=triangleSVG(c.triangle,c.skin,'#ffdfa3');p.style.cssText=`left:${a.left}px;top:${a.top}px;width:${c.size}px;height:${c.size}px`;$('app').append(p);const dx=b.left+b.width/2-a.left-c.size/2,dy=b.top+b.height/2-a.top-c.size/2;const animation=p.animate([{transform:`translate(0,0) scale(1) rotate(${c.lastAngle||c.base}rad)`,opacity:1},{transform:`translate(${dx*.5}px,${dy*.4-55}px) scale(.65) rotate(${(c.lastAngle||c.base)+.4}rad)`,opacity:1},{transform:`translate(${dx}px,${dy}px) scale(.12) rotate(0)`,opacity:.25}],{duration:reduced?150:650,easing:'cubic-bezier(.2,.6,.5,1)',fill:'forwards'});animation.onfinish=()=>{p.remove();$('basket-art').classList.remove('collecting');void $('basket-art').offsetWidth;$('basket-art').classList.add('collecting')}}
-function contaminate(){const b=$('basket-art').getBoundingClientRect(),shell=document.createElement('div');shell.className='ejected-shell';shell.style.left=`${b.left+b.width/2-12}px`;shell.style.top=`${b.top-4}px`;document.body.append(shell);const animation=shell.animate([{transform:'translate(0,0) rotate(-5deg) scale(1)',opacity:1},{transform:'translate(0,-5px) rotate(8deg) scale(1.25)',opacity:1,offset:.3},{transform:'translate(42px,-48px) rotate(55deg) scale(1.1)',opacity:1,offset:.65},{transform:'translate(72px,0) rotate(110deg) scale(.7)',opacity:0}],{duration:950,fill:'forwards',easing:'ease-out'});animation.onfinish=()=>shell.remove()}
+function collect(c){const a=c.el.getBoundingClientRect(),b=basketTarget().getBoundingClientRect(),p=document.createElement('div');p.className='collection-flight';p.innerHTML=triangleSVG(c.triangle,c.skin,'#ffdfa3');p.style.cssText=`left:${a.left}px;top:${a.top}px;width:${c.size}px;height:${c.size}px`;$('app').append(p);const dx=b.left+b.width/2-a.left-c.size/2,dy=b.top+b.height/2-a.top-c.size/2;const animation=p.animate([{transform:`translate(0,0) scale(1) rotate(${c.lastAngle||c.base}rad)`,opacity:1},{transform:`translate(${dx*.5}px,${dy*.4-55}px) scale(.65) rotate(${(c.lastAngle||c.base)+.4}rad)`,opacity:1},{transform:`translate(${dx}px,${dy}px) scale(.12) rotate(0)`,opacity:.25}],{duration:reduced?150:650,easing:'cubic-bezier(.2,.6,.5,1)',fill:'forwards'});animation.onfinish=()=>{p.remove();const receiver=basketReceiver();receiver.classList.remove('collecting');void receiver.offsetWidth;receiver.classList.add('collecting')}}
+function contaminate(){const b=basketTarget(session.basket).getBoundingClientRect(),shell=document.createElement('div');shell.className='ejected-shell';shell.style.left=`${b.left+b.width/2-12}px`;shell.style.top=`${b.top-4}px`;document.body.append(shell);const animation=shell.animate([{transform:'translate(0,0) rotate(-5deg) scale(1)',opacity:1},{transform:'translate(0,-5px) rotate(8deg) scale(1.25)',opacity:1,offset:.3},{transform:compactMode()?'translate(42px,48px) rotate(55deg) scale(1.1)':'translate(42px,-48px) rotate(55deg) scale(1.1)',opacity:1,offset:.65},{transform:'translate(72px,0) rotate(110deg) scale(.7)',opacity:0}],{duration:950,fill:'forwards',easing:'ease-out'});animation.onfinish=()=>shell.remove()}
 function selectCreature(c,now){
- if(!session||session.finished||!flow.canSelect||transition||c.parked||c.state!=='active'||now<c.lockedUntil||!creatures.includes(c)||session.helpOpen)return;
+ if(!session||session.finished||!flow.canSelect||transition||c.parked||c.state!=='active'||now<c.readyAt||now<c.lockedUntil||!creatures.includes(c)||session.helpOpen)return;
  if(!session.remaining(now)){finish(false,now);return}
  const correct=c.triangle.accepted.includes(session.order[session.index]),hadShell=session.basket>0,result=session.select(correct);c.lockedUntil=now+GAME_CONFIG.protection*1000;
- if(correct){collect(c);remove(c);tone('good');if(result==='order'){beginValidation(now);$('toast').hidden=true}else toast(`Bien vu ! +${GAME_CONFIG.correctPoints} points`,.8)}
+ if(correct){recentPicks.push({x:c.x,y:c.y,radius:c.radius,at:now});recentPicks=recentPicks.slice(-24);collect(c);remove(c);tone('good');if(result==='order'){beginValidation(now);$('toast').hidden=true}else toast(`Bien vu ! +${GAME_CONFIG.correctPoints} points`,.8)}
  else{c.sickUntil=now+GAME_CONFIG.shakeDuration*1000;c.el.classList.add('sick');c.expires=Math.max(c.expires,now+1500);tone('bad');updateHUD(now);if(hadShell){contaminate();later(()=>tone('contamination'),120)}toast(correctExplanation(c.triangle,session.order[session.index]),2.6)}
  updateHUD(now);
 }
 function correctExplanation(t,order){if(order==='any')return'Ces codages montrent une propriété particulière : ce n’est pas un quelconque.';if(order==='right'||order==='rightIso')return t.coding.right===null?'Il manque le petit carré d’angle droit.':'Le carré est présent, mais les codages ne montrent pas deux côtés égaux.';if(order==='equ')return'Il faut trois côtés égaux ou trois angles égaux, indiqués par des marques identiques.';return'Il faut deux côtés ou deux angles avec des marques identiques.'}
-document.addEventListener('pointerdown',e=>heldPointers.add(e.pointerId),true);for(const type of ['pointerup','pointercancel'])document.addEventListener(type,e=>heldPointers.delete(e.pointerId),true);window.addEventListener('blur',()=>heldPointers.clear());
+document.addEventListener('pointerdown',e=>{heldPointers.add(e.pointerId);rememberTouch(e);if(!$('compact-menu').hidden&&!e.target?.closest?.('#compact-menu')&&!e.target?.closest?.('#compact-menu-toggle'))closeCompactMenu()},true);for(const type of ['pointerup','pointercancel'])document.addEventListener(type,e=>heldPointers.delete(e.pointerId),true);window.addEventListener('blur',()=>heldPointers.clear());
 // 9. Aide contextuelle : exemples adaptés au mode, pénalité une seule fois.
 const HELP={any:'Dans ce jeu, on appelle quelconque un triangle dont les codages ne montrent aucune propriété particulière. Sans codage, tu peux le choisir pour cette commande. Attention : l’absence de marques ne prouve pas que les côtés sont différents ! Les figures de cette famille sont cependant construites sans égalité ni angle droit.',iso:'Un triangle isocèle possède au moins deux côtés de même longueur. Deux côtés portant les mêmes traits, ou deux angles portant les mêmes arcs, permettent de le reconnaître. Un équilatéral et un rectangle isocèle sont aussi isocèles.',equ:'Un triangle équilatéral possède trois côtés égaux. Les trois côtés portent les mêmes traits, ou les trois angles portent les mêmes arcs. Deux marques identiques seulement ne suffisent pas à le prouver. Un équilatéral est aussi isocèle.',right:'Un triangle rectangle possède un angle droit, indiqué par un petit carré. Même si la forme te paraît rectangle, il faut voir ce carré ! Un rectangle isocèle est aussi rectangle.',rightIso:'Un triangle rectangle isocèle possède un angle droit et deux côtés égaux. Repère le carré, puis les mêmes traits sur les deux côtés de l’angle droit, ou les mêmes arcs sur les deux angles aigus. Il est à la fois rectangle et isocèle.'};
-function openDialog(title,html){modalFocus=document.activeElement;$('dialog-title').textContent=title;$('dialog-content').innerHTML=html;$('modal').hidden=false;$('close-dialog').focus()}
+function openDialog(title,html){closeCompactMenu();modalFocus=compactMode()?$('compact-menu-toggle'):document.activeElement;$('dialog-title').textContent=title;$('dialog-content').innerHTML=html;$('modal').hidden=false;$('close-dialog').focus()}
 function closeDialog(){if($('modal').hidden)return;$('modal').hidden=true;if(session)session.helpOpen=false;field.inert=gameClock.frozen||!!transition;if(modalFocus?.isConnected)modalFocus.focus()}
 $('close-dialog').onclick=closeDialog;$('modal').onclick=e=>{if(e.target===$('modal'))closeDialog()};document.addEventListener('keydown',e=>{if($('modal').hidden)return;if(e.key==='Escape')closeDialog();if(e.key==='Tab'){e.preventDefault();$('close-dialog').focus()}});
 $('help').onclick=()=>{if(!session||session.finished||!$('modal').hidden||transition)return;if(!session.remaining(gameNow())){finish(false,gameNow());return}if(!session.openHelp())return;const f=session.order[session.index],m=mode==='mixed'?'sides':mode,good=makeTriangle(f,m,2),counter=makeTriangle(f==='any'?'iso':f==='rightIso'?'right':'any',mode==='mixed'?'angles':mode,2);let html=`<p>${HELP[f]}</p><div class="examples"><div class="example good">${triangleSVG(good)}<b>✓ Tu peux le choisir</b></div><div class="example bad">${triangleSVG(counter)}<b>✕ Ne convient pas</b></div>`;if(mode==='mixed')html+=`<div class="example good">${triangleSVG(makeTriangle(f,'angles',2))}<b>✓ Avec des arcs</b></div>`;html+='</div><p class="note">Compare le nombre de traits ou d’arcs. Tourner un triangle ne change pas ses propriétés. Cette ouverture coûte 10 points ; le temps continue.</p>';openDialog(LABELS[f],html);updateHUD(gameNow())};
@@ -489,7 +558,7 @@ function updateCreature(c,now,dt){
  if(c.state==='active'&&now>=c.expires&&!transition&&!session.helpOpen&&!heldPointers.size&&!c.focused&&now>=c.lockedUntil){c.state='leaving';c.leaveAt=now}
  let reveal=c.state==='entering'?clamp(age/emergence,0,1):c.state==='leaving'?1-clamp((now-c.leaveAt)/(c.burial*1000),0,1):1;
  if(c.state==='leaving'&&reveal===0){remove(c);return}
- const active=c.state==='active'&&!transition&&now>=c.lockedUntil;c.el.classList.toggle('unavailable',!active);c.el.tabIndex=active?0:-1;
+ const active=c.state==='active'&&!transition&&now>=c.readyAt&&now>=c.lockedUntil;c.el.classList.toggle('unavailable',!active);c.el.tabIndex=active?0:-1;
  if(!transition&&!session.helpOpen&&!heldPointers.size)motionStep(c,creatures,fieldRect.width,fieldRect.height,dt,now/1000);
  c.el.classList.toggle('resting',!c.walking);
  if(c.skin==='crab'&&c.walking&&now-c.lastTrack>420){tracks.push({x:c.x,y:c.y,time:now/1000});c.lastTrack=now}
@@ -512,6 +581,7 @@ function frame(wall){
  lastWall=wall;const now=gameClock.now(wall),dt=Math.min(Math.max(0,(now-lastFrame)/1000),.04);lastFrame=now;
  if(gameClock.frozen){if(sceneDirty)beach(now/1000);requestAnimationFrame(frame);return}
  runEffects(now);beach(now/1000);
+ if(compactMenuUntil&&now>compactMenuUntil&&!document.activeElement?.closest?.('#compact-menu'))closeCompactMenu();
  if(session&&!session.finished){
   animateTransition(now);
   if(!session.finished){
@@ -531,6 +601,7 @@ document.addEventListener('visibilitychange',()=>{heldPointers.clear();if(docume
 window.addEventListener('pagehide',()=>{if(activeGame())hold('background')});
 window.addEventListener('pageshow',()=>{lastWall=performance.now();syncDevice()});
 document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&!$('compact-menu').hidden){closeCompactMenu(true);e.preventDefault();return}
  if(!gameClock.frozen||flow.state==='portrait')return;
  if(e.key==='Escape'){e.preventDefault();if(flow.state==='confirm')continueGame();else resumeGame()}
  if(e.key==='Tab'){const buttons=flow.state==='confirm'?[$('continue'),$('confirm-end')]:[$('resume'),$('pause-end')];const i=buttons.indexOf(document.activeElement);e.preventDefault();buttons[(i+(e.shiftKey?-1:1)+buttons.length)%buttons.length].focus()}
