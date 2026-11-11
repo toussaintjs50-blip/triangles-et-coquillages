@@ -47,6 +47,13 @@ html,body{overscroll-behavior:none}#app{height:100vh;height:100dvh}.menu{padding
 @media(max-width:600px){#compact-hud{grid-template-columns:minmax(0,1fr) auto auto 36px 36px;gap:5px;padding:2px 6px}.compact-family strong{font-size:16px}.compact-family svg{width:19px}.compact-shells{--shell-size:12px;gap:1px}.compact-time{font-size:16px}.compact-action{width:36px;height:40px;padding:8px}}
 @media(max-width:450px){#compact-hud{gap:3px;padding-inline:4px}.compact-family strong{font-size:14px}.compact-family{gap:3px}.compact-shells{--shell-size:10px;gap:1px}.compact-time{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.shell-slot.flash{animation:none}}
+/* Évolution : aide près de la commande et bandeau unique. */
+.order-line{display:flex;align-items:center;gap:9px}.order-line strong{flex:1}.order .help-button{font-size:11px;padding:6px 8px;min-height:40px;box-shadow:none;text-shadow:none;flex:none}.order .help-button small{font-size:8px;max-width:105px}.preferences{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;font-size:12px;margin-top:12px}.volume{width:85px;vertical-align:middle;accent-color:#128997}.levels .level{flex:1;min-width:0}#compact-hud{grid-template-columns:minmax(max-content,1fr) auto auto auto 44px 44px;gap:10px}.compact-family strong{overflow:visible}.compact-family #family-help{width:32px;height:40px;padding:3px;font-weight:900;font-size:21px;flex:none}.compact-points{white-space:nowrap;font-size:19px;font-variant-numeric:tabular-nums}#compact-menu label{display:block;font-size:12px;margin:10px 6px}.discovery-nav{display:flex;justify-content:space-between;gap:12px}.discovery-nav button{flex:1}.discovery-progress{color:#54716e;font-size:12px}.storm-status{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:5;background:#fff4dcf0;border-radius:14px;padding:9px 14px;text-align:center;font-size:12px;pointer-events:none;max-width:80%;width:max-content}
+@media(max-width:950px),(max-height:500px){#compact-hud{grid-template-columns:minmax(max-content,1fr) auto auto auto 36px 36px;gap:6px;padding-inline:7px}.compact-family strong{font-size:18px}.compact-family{gap:4px}.compact-shells{--shell-size:13px;gap:1px}.compact-time,.compact-points{font-size:17px}.compact-action{width:36px}.order{max-width:none}.order .help-button{font-size:0;width:36px;padding:5px}.order .help-button:before{content:'?';font-size:19px}.order .help-button small{display:none}.tools button{font-size:11px;padding:6px;min-width:38px}.preferences{margin-top:7px}.menu .record{margin-top:8px}}
+@media(max-width:650px){#compact-hud{gap:4px;grid-template-columns:minmax(max-content,1fr) auto auto auto 32px 32px}.compact-family strong{font-size:15px}.compact-family svg{width:17px}.compact-family #family-help{width:27px}.compact-shells{--shell-size:10px;gap:1px}.compact-time,.compact-points{font-size:15px}.compact-action{width:32px;padding:6px}.compact-family{gap:2px}}
+@media(max-height:450px){.menu .card{padding:12px 20px}.menu h1{font-size:28px}.menu .lead{font-size:12px;margin:5px auto}.menu .mode-label{margin:6px 0}.menu .level,.menu .mode{padding:7px}.menu .primary{margin:9px auto;padding:10px}.menu-actions .secondary{padding:7px 10px;min-height:36px}.dialog .examples{margin:8px 0}.dialog p{margin:8px 0}.dialog .example svg{height:85px}}
+
+.gentle .tail,.gentle .fin,.gentle .leg,.gentle .claw,.gentle .flipper,.gentle .eyes{animation:none!important}
 </style>
 </head>
 <body>
@@ -58,23 +65,23 @@ html,body{overscroll-behavior:none}#app{height:100vh;height:100dvh}.menu{padding
 <div id="end-overlay" class="play-overlay" hidden><section class="panel" role="dialog" aria-modal="true" aria-labelledby="end-title"><h2 id="end-title">Veux-tu vraiment terminer la partie ?</h2><button id="continue" class="primary">Continuer la partie</button><button id="confirm-end" class="secondary">Terminer la partie</button></section></div>
 <div id="rotate-overlay" class="play-overlay" hidden><section class="panel" role="dialog" aria-modal="true" aria-labelledby="rotate-title"><div class="rotation-icon" aria-hidden="true"><span></span> ↻</div><h2 id="rotate-title">Tourne ton téléphone pour jouer</h2></section></div>
 <section id="menu" class="screen menu" aria-labelledby="title">
- <div class="card"><div class="eyebrow">Le restaurant de la plage</div><h1 id="title">Triangles<br>& <em>Coquillages</em></h1><p class="lead">Le chef a besoin de toi ! Récolte les bons triangles.<br><b>Observe les codages, pas seulement la forme.</b></p><div class="hero" id="hero" aria-hidden="true"></div><span class="mode-label">Comment veux-tu lire les triangles ?</span><div class="modes" role="group" aria-label="Mode de codage"><button class="mode" data-mode="sides" aria-pressed="true">Les côtés<small>Traits identiques</small></button><button class="mode" data-mode="angles" aria-pressed="false">Les angles<small>Arcs identiques</small></button><button class="mode" data-mode="mixed" aria-pressed="false">Le mélange<small>Une figure, un codage</small></button></div><div class="levels" role="group" aria-label="Niveau de vitesse"><button class="level" data-level="1" aria-pressed="true">Niveau 1<small>Plage tranquille</small></button><button class="level" data-level="2" aria-pressed="false">Niveau 2<small>Plage agitée</small></button></div><button id="play" class="primary">À la pêche aux triangles ! →</button><div class="menu-actions"><button id="rules" class="secondary">Comment jouer ?</button><button class="sound secondary">Son : activé</button><button class="fullscreen secondary">Plein écran</button></div><p id="record" class="record"></p><div class="tagline">5 commandes · 10 coquillages par panier · 10 minutes</div></div>
+ <div class="card"><div class="eyebrow">Le restaurant de la plage</div><h1 id="title">Triangles<br>& <em>Coquillages</em></h1><p class="lead">Le chef a besoin de toi ! Récolte les bons triangles.<br><b>Observe les codages, pas seulement la forme.</b></p><div class="hero" id="hero" aria-hidden="true"></div><span class="mode-label">Comment veux-tu lire les triangles ?</span><div class="modes" role="group" aria-label="Mode de codage"><button class="mode" data-mode="sides" aria-pressed="true">Les côtés<small>Traits identiques</small></button><button class="mode" data-mode="angles" aria-pressed="false">Les angles<small>Arcs identiques</small></button><button class="mode" data-mode="mixed" aria-pressed="false">Le mélange<small>Une figure, un codage</small></button></div><div class="levels" role="group" aria-label="Niveau de vitesse"><button class="level" data-level="1" aria-pressed="true">Niveau 1<small>Plage tranquille</small></button><button class="level" data-level="2" aria-pressed="false">Niveau 2<small>Plage agitée</small></button><button class="level" data-level="3" aria-pressed="false">Niveau 3<small>Tempête</small></button></div><button id="play" class="primary">À la pêche aux triangles ! →</button><div class="menu-actions"><button id="discover" class="secondary">Découvrir les triangles</button><button id="rules" class="secondary">Comment jouer ?</button><button class="sound secondary">Son : coupé</button><button class="fullscreen secondary">Plein écran</button></div><div class="preferences"><label><input id="reduce-motion" type="checkbox"> Animations douces</label> <label>Volume <input class="volume" aria-label="Volume" type="range" min="0" max="100" value="35"></label></div><p id="record" class="record"></p><div class="tagline">5 commandes · 10 coquillages par panier · 10 minutes</div></div>
 </section>
 <section id="game" class="screen" hidden aria-label="Partie en cours">
 <header id="compact-hud" hidden aria-label="Commande et progression">
- <div id="compact-family" class="compact-family"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3 26 24H2Z" fill="#fff0bc" stroke="#715234" stroke-width="2" stroke-linejoin="round"/></svg><strong id="compact-family-name"></strong></div>
+ <div id="compact-family" class="compact-family"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3 26 24H2Z" fill="#fff0bc" stroke="#715234" stroke-width="2" stroke-linejoin="round"/></svg><strong id="compact-family-name"></strong><button id="family-help" class="compact-action" aria-label="Aide : moins 10 points" title="Aide · −10 points">?</button></div>
  <div id="compact-shells" class="compact-shells" role="progressbar" aria-label="Coquillages du panier" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
  <time id="compact-time" class="compact-time" aria-label="Temps restant">10:00</time>
- <button id="compact-pause" class="compact-action" title="Pause" aria-label="Pause"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="5" y="3" width="5" height="18" rx="1.5"/><rect x="14" y="3" width="5" height="18" rx="1.5"/></svg></button>
+ <span class="compact-points" title="Score">★ <b id="hud-score">0</b></span><button id="compact-pause" class="compact-action" title="Pause" aria-label="Pause"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="5" y="3" width="5" height="18" rx="1.5"/><rect x="14" y="3" width="5" height="18" rx="1.5"/></svg></button>
  <button id="compact-menu-toggle" class="compact-action" title="Autres commandes" aria-label="Autres commandes" aria-expanded="false" aria-controls="compact-menu"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
 </header>
 <div id="compact-menu" hidden role="group" aria-label="Autres commandes">
- <p id="compact-context"></p><p>Score : <b id="compact-score">0</b></p>
+ <p id="compact-context"></p><label>Volume <input class="volume" aria-label="Volume en plein écran" type="range" min="0" max="100" value="35"></label><label><input id="compact-reduce" type="checkbox"> Animations douces</label><p>Score : <b id="compact-score">0</b></p>
  <button id="compact-help" title="Aide, moins dix points">Voir l’aide · −10 points</button>
- <button class="sound" title="Activer ou couper les sons">Son : activé</button>
+ <button class="sound" title="Activer ou couper les sons">Son : coupé</button>
  <button id="compact-end" title="Terminer la partie">Terminer la partie</button>
  <button class="fullscreen" title="Quitter le plein écran">Quitter le plein écran</button>
-</div><header class="hud"><div class="order"><small id="order-number"></small><strong id="order-title"></strong></div><div class="stats"><div class="stat"><small>Score</small><b id="score">0</b></div><div class="stat"><small>Temps</small><b id="time">10:00</b></div></div><div class="tools"><button class="sound" aria-label="Activer ou couper les sons">Son : oui</button><button id="pause">Pause</button><button id="end">Terminer</button><button class="fullscreen" hidden>Plein écran</button><button id="back">Menu</button></div></header><div class="portrait">↔ Tourne ton téléphone pour profiter d’une plus grande plage.</div><div id="field" aria-label="Créatures triangulaires à récolter"></div><footer class="footer"><div class="basket-box"><div id="basket-art" class="basket-art" aria-hidden="true"><div id="basket-shells" class="basket-shells"></div></div><div class="basket-label"><small>TON PANIER</small><b id="basket">0 / 10</b></div></div><button id="help" class="help-button">Voir à quoi ça ressemble ?<small>Aide : −10 points · le temps continue</small></button><div class="tip" id="mode-tip"></div></footer><div id="toast" class="toast" role="status" hidden></div></section>
+</div><header class="hud"><div class="order"><small id="order-number"></small><div class="order-line"><strong id="order-title"></strong><button id="help" class="help-button">Voir à quoi ça ressemble ?<small>Aide : −10 points · le temps continue</small></button></div></div><div class="stats"><div class="stat"><small>Score</small><b id="score">0</b></div><div class="stat"><small>Temps</small><b id="time">10:00</b></div></div><div class="tools"><button class="sound" aria-label="Activer ou couper les sons">Son : coupé</button><button id="pause">Pause</button><button id="end">Terminer</button><button class="fullscreen" hidden>Plein écran</button><button id="back">Menu</button></div></header><div class="portrait">↔ Tourne ton téléphone pour profiter d’une plus grande plage.</div><div id="field" aria-label="Créatures triangulaires à récolter"></div><footer class="footer"><div class="basket-box"><div id="basket-art" class="basket-art" aria-hidden="true"><div id="basket-shells" class="basket-shells"></div></div><div class="basket-label"><small>TON PANIER</small><b id="basket">0 / 10</b></div></div><div class="tip" id="mode-tip"></div></footer><div id="toast" class="toast" role="status" hidden></div></section>
 <section id="results" class="screen menu" hidden aria-labelledby="result-title"><div class="card"><div class="eyebrow">Le service est terminé</div><h2 id="result-title"></h2><div id="final-score" class="final-score"></div><div id="result-detail" class="result-grid"></div><p id="best-result"></p><div class="nickname"><label for="nickname">Ton pseudo</label><input id="nickname" maxlength="20" placeholder="Petit crabe" autocomplete="off"><button id="save-name" class="secondary">Signer le record</button></div><p id="save-message" class="record" role="status"></p><button id="replay" class="primary">Rejouer →</button><button id="result-menu" class="secondary">Retour au menu</button></div></section>
 <div id="modal" class="overlay" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><h2 id="dialog-title"></h2><div id="dialog-content"></div><button id="close-dialog" class="primary close">C’est compris !</button></section></div>
 </main>
@@ -96,18 +103,20 @@ const GAME_CONFIG = Object.freeze({
 // Le niveau change seulement le rythme. Les valeurs du niveau 1 sont celles
 // de la version sauvegardée ; toutes les règles mathématiques restent communes.
 const LEVEL_CONFIG=Object.freeze({
- 1:Object.freeze({name:'Plage tranquille',fish:1,crab:1,emergence:1,presence:1,burial:1,renewal:1,rotation:1,rotationExtra:0}),
- 2:Object.freeze({name:'Plage agitée',fish:1.6,crab:1.5,emergence:1.4,presence:.7,burial:1.5,renewal:1.4,rotation:1.25,rotationExtra:.08})
+ 1:Object.freeze({name:'Plage tranquille',fish:1.6,crab:1.5,emergence:1.4,presence:.7,burial:1.5,renewal:1.4,rotation:1.25,rotationExtra:.08,ratio:.35,sea:1,turn:1,stormEvery:[28,42],stormDuration:5}),
+ 2:Object.freeze({name:'Plage agitée',fish:1.95,crab:1.8,emergence:1.65,presence:.61,burial:1.7,renewal:1.65,rotation:1.4,rotationExtra:.11,ratio:.28,sea:1.35,turn:1.2,stormEvery:[28,42],stormDuration:5}),
+ 3:Object.freeze({name:'Tempête',fish:2.25,crab:2.1,emergence:1.8,presence:.56,burial:1.85,renewal:1.8,rotation:1.55,rotationExtra:.13,ratio:.23,sea:1.7,turn:1.4,stormEvery:[28,42],stormDuration:5})
 });
 // Répartition et protection des nouvelles figures, indépendantes des mathématiques.
 const RENEWAL_CONFIG=Object.freeze({desktopLimit:28,mobileLimit:14,desktopArea:30000,mobileArea:18000,bodyRadius:.38,selectedAreaMs:4800,touchAreaMs:1800,newFigureMs:260,afterAnnouncementMs:160,touchRadius:30,selectionMargin:18,safetyGoodMs:900});
 const SHORT_LABELS={any:'Quelconque',iso:'Isocèle',equ:'Équilatéral',right:'Rectangle',rightIso:'Rectangle isocèle'};
-function chooseSpawnFamily(order,visible,target,now,state,rng=Math.random){
+function chooseSpawnFamily(order,visible,target,now,state,rng=Math.random,level=1){
  if(state.order!==order){state.order=order;state.good=[];state.bad=[];state.lastGoodAt=-Infinity}
  const good=FAMILIES.filter(f=>TABLE[f].includes(order)),bad=FAMILIES.filter(f=>!TABLE[f].includes(order));
  const count=visible.filter(c=>c.state!=='leaving'&&TABLE[c.triangle.family].includes(order)).length;
- const desired=Math.max(1,Math.round(target*GAME_CONFIG.correctRatio));
- const chance=Math.max(.16,Math.min(.65,GAME_CONFIG.correctRatio+(desired-count)*.09));
+ const ratio=LEVEL_CONFIG[level].ratio;
+ const desired=Math.max(1,Math.round(target*ratio));
+ const chance=Math.max(.12,Math.min(.65,ratio+(desired-count)*.09));
  const takeGood=count===0&&now-state.lastGoodAt>=RENEWAL_CONFIG.safetyGoodMs||rng()<chance;
  const key=takeGood?'good':'bad',pool=takeGood?good:bad;
  if(!state[key].length){state[key]=pool.slice();for(let i=state[key].length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[state[key][i],state[key][j]]=[state[key][j],state[key][i]]}}
@@ -268,11 +277,11 @@ function motionStep(c,others,width,height,dt,time){
  if(c.skin==='shell'||c.focused||c.state!=='active'||c.still||c.parked)return;
  const b=habitatBounds(width,height,c.radius,c.habitat);
  let speed=c.speed;
- if(c.level===2&&time>=(c.nextTurn??0)){
-  if(c.skin==='crab'){c.vx=Math.random()<.5?-1:1;c.vy=rand(-.45,.45);c.restUntil=time+rand(.2,.7);c.nextTurn=time+rand(1.1,2.8)}
-  else if(c.skin==='fish'){if(Math.random()<.35)c.vx*=-1;c.vy=rand(-.3,.3);c.nextTurn=time+rand(2.5,5.5)}
+ if(c.level>=1&&time>=(c.nextTurn??0)){
+  if(c.skin==='crab'){c.vx=Math.random()<.5?-1:1;c.vy=rand(-.45,.45);c.restUntil=time+rand(.2,.7);c.nextTurn=time+rand(1.1,2.8)/LEVEL_CONFIG[c.level].turn}
+  else if(c.skin==='fish'){if(Math.random()<.35)c.vx*=-1;c.vy=rand(-.3,.3);c.nextTurn=time+rand(2.5,5.5)/LEVEL_CONFIG[c.level].turn}
  }
- if(c.skin==='crab'&&(c.level===2?time<(c.restUntil??0):Math.sin(time*.9+c.phase)>.62))speed=0;
+ if(c.skin==='crab'&&(c.level>=1?time<(c.restUntil??0):Math.sin(time*.9+c.phase)>.62))speed=0;
  if(c.skin==='fish')speed*=.8+.2*Math.sin(time*1.3+c.phase);
  const nx=clamp(c.x+c.vx*speed*dt,b.left,b.right),ny=clamp(c.y+c.vy*speed*dt+Math.sin(time*1.1+c.phase)*speed*.13*dt,b.top,b.bottom);
  const blocked=others.some(o=>o!==c&&!o.parked&&Math.hypot(nx-o.x,ny-o.y)<c.radius+o.radius+GAME_CONFIG.bodyGap);
@@ -283,7 +292,7 @@ function motionStep(c,others,width,height,dt,time){
 }
 globalThis.TrianglesGame={GAME_CONFIG,LEVEL_CONFIG,RENEWAL_CONFIG,SHORT_LABELS,chooseSpawnFamily,GameClock,GameFlow,FAMILIES,TABLE,geometry,properties,makeTriangle,GameSession,runDiagnostics,organicPosition,habitatBounds,densityFor,motionStep};
 // 7. Interface, sons et sauvegarde locale.
-const $=id=>document.getElementById(id), field=$('field');let mode='sides',level=1,session=null,creatures=[],targetDensity=15,lastFrame=0,nextSpawn=0,transition=null,toastUntil=0,soundOn=true,audio=null,modalFocus=null,heldPointers=new Set(),flowIndex=0,layoutKey='',record=null,fieldRect={left:0,top:0,width:0,height:0},tracks=[],lastHud=0;
+const $=id=>document.getElementById(id), field=$('field');let mode='sides',level=1,session=null,creatures=[],targetDensity=15,lastFrame=0,nextSpawn=0,transition=null,toastUntil=0,soundOn=false,audio=null,modalFocus=null,heldPointers=new Set(),flowIndex=0,layoutKey='',record=null,fieldRect={left:0,top:0,width:0,height:0},tracks=[],lastHud=0;
 let familyState={},recentTouches=[],recentPicks=[],compactMenuUntil=0;
 const compactShells=[];
 function compactMode(){return !!document.fullscreenElement&&!$('game').hidden}
@@ -320,7 +329,7 @@ function syncInterruption(){
  const state=flow.state,frozen=gameClock.frozen;
  document.body.classList.toggle('frozen',frozen);$('game').dataset.state=state;
  $('rotate-overlay').hidden=state!=='portrait';$('end-overlay').hidden=state!=='confirm';$('pause-overlay').hidden=state!=='paused';
- field.inert=frozen||!!transition||session?.helpOpen===true;
+ field.inert=frozen||!!transition||!!storm||session?.helpOpen===true;
  $('game').inert=frozen;$('menu').inert=state==='portrait';$('results').inert=state==='portrait';$('modal').inert=frozen;
  $('help').disabled=frozen||!!transition;
  if(frozen){for(const animation of document.getAnimations()){const target=animation.effect?.target;if(target?.closest?.('.play-overlay'))continue;if(animation.playState==='running'){pausedAnimations.add(animation);animation.pause()}}}
@@ -338,12 +347,12 @@ function syncDevice(){
  if(isPhonePortrait())hold('portrait');else release('portrait');
  resizeWorld();if(activeGame()&&!isPhonePortrait())layout();
 }
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function loadRecord(){record=null;try{const raw=localStorage.getItem(`triangles-coquillages-record-v2-level-${level}`)||(level===1?localStorage.getItem('triangles-coquillages-record-v1'):null);record=JSON.parse(raw);if(!record||!Number.isFinite(record.score)||record.score<0)record=null}catch{}}
+let reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function loadRecord(){record=null;try{const raw=localStorage.getItem(`triangles-coquillages-record-v3-level-${level}`);record=JSON.parse(raw);if(!record||!Number.isFinite(record.score)||record.score<0)record=null}catch{}}
 function showRecord(){$('record').textContent=record?`Record du niveau ${level} : ${record.score} points · ${record.name||'Petit crabe'}`:`Niveau ${level} : ton premier record t’attend !`}loadRecord();showRecord();
-function tone(type){if(!soundOn||gameClock.frozen)return;try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume().catch(()=>{});const notes={good:[660,880],bad:[220,180],contamination:[170,130],order:[523,659,784],win:[523,659,784,1047],timeout:[392,330,262]}[type];notes.forEach((hz,i)=>{const osc=audio.createOscillator(),gain=audio.createGain(),t=audio.currentTime+i*.085;osc.type='sine';osc.frequency.value=hz;gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(GAME_CONFIG.audioVolume,t+.012);gain.gain.exponentialRampToValueAtTime(.0001,t+.15);osc.connect(gain);gain.connect(audio.destination);osc.start(t);osc.stop(t+.16)})}catch{}}
-function toggleSound(){soundOn=!soundOn;document.querySelectorAll('.sound').forEach(b=>{b.textContent=`Son : ${soundOn?'activé':'coupé'}`;b.setAttribute('aria-pressed',String(soundOn))});if(soundOn)tone('good')}
-document.querySelectorAll('.sound').forEach(b=>{b.setAttribute('aria-pressed','true');b.onclick=toggleSound});
+function tone(type){if(!soundOn||gameClock.frozen)return;try{ensureAudio();if(audio.state==='suspended')audio.resume().catch(()=>{});const notes={good:[660,880],bad:[220,180],contamination:[170,130],order:[523,659,784],win:[523,659,784,1047],timeout:[392,330,262]}[type];notes.forEach((hz,i)=>{const osc=audio.createOscillator(),gain=audio.createGain(),t=audio.currentTime+i*.085;osc.type='sine';osc.frequency.value=hz;gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(GAME_CONFIG.audioVolume,t+.012);gain.gain.exponentialRampToValueAtTime(.0001,t+.15);osc.connect(gain);gain.connect(audioMaster);osc.start(t);osc.stop(t+.16)})}catch{}}
+function toggleSound(){soundOn=!soundOn;document.querySelectorAll('.sound').forEach(b=>{b.textContent=`Son : ${soundOn?'activé':'coupé'}`;b.setAttribute('aria-pressed',String(soundOn))});if(soundOn){ensureAudio();tone('good')}if(audioMaster)audioMaster.gain.setTargetAtTime(soundOn?volume:0,audio.currentTime,.25)}
+document.querySelectorAll('.sound').forEach(b=>{b.setAttribute('aria-pressed','false');b.onclick=toggleSound});
 let fullscreenFailed=false;
 function updateFullscreen(){const available=!fullscreenFailed&&document.fullscreenEnabled===true&&typeof document.documentElement.requestFullscreen==='function'&&typeof document.exitFullscreen==='function';document.querySelectorAll('.fullscreen').forEach(b=>{b.hidden=!available&&!document.fullscreenElement;b.textContent=document.fullscreenElement?'Quitter le plein écran':'Plein écran'});syncCompactMode()}
 document.querySelectorAll('.fullscreen').forEach(b=>b.onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{fullscreenFailed=true}updateFullscreen();syncDevice()});
@@ -362,8 +371,8 @@ function updateHUD(now){
  const shells=$('basket-shells');if(shells.dataset.count!==String(basket)){shells.dataset.count=String(basket);shells.innerHTML='<span></span>'.repeat(basket)}
  renderCompactBasket(basket);$('compact-score').textContent=$('score').textContent;$('compact-time').textContent=$('time').textContent;$('compact-time').classList.toggle('urgent',r<=60);$('compact-time').classList.toggle('paused',!!transition||gameClock.frozen);
  if(index<5){$('compact-family-name').textContent=SHORT_LABELS[session.order[index]];$('compact-family').setAttribute('aria-label',LABELS[session.order[index]]);$('compact-context').textContent=`Niveau ${session.level||1} · Commande ${index+1} / 5`}
- $('help').disabled=!!transition||gameClock.frozen;
- $('compact-help').disabled=$('help').disabled;
+ $('help').disabled=!!storm||!!transition||gameClock.frozen;
+ $('compact-help').disabled=$('help').disabled;$('family-help').disabled=$('help').disabled;$('hud-score').textContent=$('score').textContent;
 }
 function clearCreatures(){for(const c of creatures)c.el.remove();creatures=[];familyState={}}
 function compactScreen(){return innerWidth<=950||innerHeight<=500}
@@ -387,8 +396,8 @@ function layout(){
 function restoreCreatureTime(c,now){const elapsed=now-c.parkedAt;for(const key of ['born','readyAt','expires','leaveAt','lockedUntil','sickUntil','lastTrack'])if(Number.isFinite(c[key]))c[key]+=elapsed}
 function resetEffects(){scheduledEffects=[];for(const el of document.querySelectorAll('.collection-flight,.ejected-shell'))el.remove();$('basket-art').classList.remove('delivery','collecting');$('compact-shells').classList.remove('delivery','collecting');pausedAnimations.clear()}
 function cancelTransition(){transition=null;$('announcement').hidden=true;$('announcement').innerHTML='';document.querySelector('.order').classList.remove('announcing');$('compact-family').classList.remove('announcing');field.classList.remove('transitioning');field.inert=gameClock.frozen;flow.phase=activeGame()?'playing':flow.phase;$('help').disabled=gameClock.frozen}
-function start(){closeDialog();cancelTransition();resetEffects();heldPointers.clear();clearCreatures();gameClock.reset(performance.now());lastWall=performance.now();lastFrame=0;const now=gameNow();session=new GameSession(GAME_CONFIG,now);session.level=level;flowIndex=0;displayScreen('game');layoutKey='';layout();$('mode-tip').textContent=`Niveau ${level} · Mode ${mode==='sides'?'côtés':mode==='angles'?'angles':'mixte'} · Compare les marques identiques.`;$('toast').hidden=true;beginAnnouncement(now);syncDevice();updateHUD(now);tone('order')}
-function menu(){closeDialog();cancelTransition();resetEffects();clearCreatures();if(session&&!session.finished)session.finished=true;gameClock.reset(performance.now());lastWall=performance.now();lastFrame=0;displayScreen('menu');sceneDirty=true;loadRecord();showRecord();syncDevice()}
+function start(){resetStorm();closeDialog();cancelTransition();resetEffects();heldPointers.clear();clearCreatures();gameClock.reset(performance.now());lastWall=performance.now();lastFrame=0;const now=gameNow();session=new GameSession(GAME_CONFIG,now);session.level=level;flowIndex=0;displayScreen('game');layoutKey='';layout();$('mode-tip').textContent=`Niveau ${level} · Mode ${mode==='sides'?'côtés':mode==='angles'?'angles':'mixte'} · Compare les marques identiques.`;$('toast').hidden=true;beginAnnouncement(now);syncDevice();updateHUD(now);tone('order')}
+function menu(){resetStorm();closeDialog();cancelTransition();resetEffects();clearCreatures();if(session&&!session.finished)session.finished=true;gameClock.reset(performance.now());lastWall=performance.now();lastFrame=0;displayScreen('menu');sceneDirty=true;loadRecord();showRecord();syncDevice()}
 function beginAnnouncement(now){
  closeCompactMenu();$('compact-family').classList.add('announcing');
  session.pause(now);flow.phase='announcement';field.inert=true;field.classList.add('transitioning');document.querySelector('.order').classList.add('announcing');
@@ -417,11 +426,12 @@ function animateTransition(now){
  if(p>=1){if(tr.kind==='validation'){if(session.completed===5){cancelTransition();finish(true,now)}else beginAnnouncement(now)}else{cancelTransition();session.resume(now);for(const c of creatures){c.born=now-c.emergence*1000;c.expires=now+c.lifetime;c.readyAt=now+RENEWAL_CONFIG.afterAnnouncementMs;c.state='active'}updateHUD(now)}}
 }
 $('play').onclick=start;$('replay').onclick=start;$('pause').onclick=pauseGame;$('resume').onclick=resumeGame;$('end').onclick=requestEnd;$('pause-end').onclick=requestEnd;$('continue').onclick=continueGame;$('confirm-end').onclick=endGame;$('back').onclick=requestEnd;$('result-menu').onclick=menu;
-$('compact-pause').onclick=pauseGame;
+$('compact-pause').onclick=pauseGame;$('family-help').onclick=()=>$('help').onclick();
 $('compact-menu-toggle').onclick=()=>{const open=$('compact-menu').hidden;$('compact-menu').hidden=!open;$('compact-menu-toggle').setAttribute('aria-expanded',String(open));compactMenuUntil=open?gameNow()+5500:0};
 $('compact-help').onclick=()=>{closeCompactMenu();$('help').onclick()};$('compact-end').onclick=()=>{closeCompactMenu();requestEnd()};
-function saveRecord(newRecord){try{localStorage.setItem(`triangles-coquillages-record-v2-level-${session?.level||level}`,JSON.stringify(newRecord));return true}catch{return false}}
+function saveRecord(newRecord){try{localStorage.setItem(`triangles-coquillages-record-v3-level-${session?.level||level}`,JSON.stringify(newRecord));return true}catch{return false}}
 function finish(won,now,reason='normal'){
+ resetStorm();
  won=won&&session.completed===GAME_CONFIG.orderCount;
  session.finish(now,won);session.interrupted=reason==='manual';
  cancelTransition();resetEffects();clearCreatures();closeDialog();
@@ -446,7 +456,7 @@ $('save-name').onclick=()=>{if(!session?.newRecord)return;record.name=$('nicknam
 // 8. Cycles indépendants et habitats : aucun emplacement prédéfini.
 function spawn(now){
  const visible=creatures.filter(c=>!c.parked);
- if(visible.length>=targetDensity||heldPointers.size||session.index>=5||gameClock.frozen)return;
+ if(storm||visible.length>=targetDensity||heldPointers.size||session.index>=5||gameClock.frozen)return;
  const excluded=exclusionZones(now);
  for(const c of creatures.filter(c=>c.parked)){const p=organicPosition(fieldRect.width,fieldRect.height,c.radius,c.habitat,visible,Math.random,excluded);if(p){restoreCreatureTime(c,now);Object.assign(c,p);c.readyAt=now+RENEWAL_CONFIG.newFigureMs;c.parked=false;c.el.hidden=false;return}}
  const settings=LEVEL_CONFIG[session.level];
@@ -461,7 +471,7 @@ function spawn(now){
  }
  if(!site)return;
  const{habitat,skin,size,radius,pos}=site;
- const family=chooseSpawnFamily(order,visible,targetDensity,now,familyState),triangle=makeTriangle(family,mode,session.index);
+ const family=chooseSpawnFamily(order,visible,targetDensity,now,familyState,Math.random,session.level),triangle=makeTriangle(family,mode,session.index);
  const color=pick(skin==='crab'?['#f1a77f','#efb981','#e9a3a1']:skin==='fish'?['#f1c86c','#91cbd0','#b7c0e1','#f0b88b']:skin==='turtle'?['#bfd58d','#b3d2af']:['#f7cfb0','#f2c7bd','#f5dbac','#e7c4d4']);
  const el=document.createElement('button');el.className=`creature ${skin} unavailable`;el.type='button';el.tabIndex=-1;el.setAttribute('aria-label',`Créature triangulaire. Observe ${triangle.coding.kind==='sides'?'les côtés':'les angles'} et les éventuels carrés.`);el.innerHTML=triangleSVG(triangle,skin,color,true);el.style.width=el.style.height=`${size}px`;
  const complexity=Math.max(...triangle.coding.sides,...triangle.coding.angles),range=complexity>=3?GAME_CONFIG.visibility.complex:complexity>0||triangle.coding.right!==null?GAME_CONFIG.visibility.simple:GAME_CONFIG.visibility.none;
@@ -481,7 +491,7 @@ function remove(c){c.el.remove();creatures=creatures.filter(x=>x!==c)}
 function collect(c){const a=c.el.getBoundingClientRect(),b=basketTarget().getBoundingClientRect(),p=document.createElement('div');p.className='collection-flight';p.innerHTML=triangleSVG(c.triangle,c.skin,'#ffdfa3');p.style.cssText=`left:${a.left}px;top:${a.top}px;width:${c.size}px;height:${c.size}px`;$('app').append(p);const dx=b.left+b.width/2-a.left-c.size/2,dy=b.top+b.height/2-a.top-c.size/2;const animation=p.animate([{transform:`translate(0,0) scale(1) rotate(${c.lastAngle||c.base}rad)`,opacity:1},{transform:`translate(${dx*.5}px,${dy*.4-55}px) scale(.65) rotate(${(c.lastAngle||c.base)+.4}rad)`,opacity:1},{transform:`translate(${dx}px,${dy}px) scale(.12) rotate(0)`,opacity:.25}],{duration:reduced?150:650,easing:'cubic-bezier(.2,.6,.5,1)',fill:'forwards'});animation.onfinish=()=>{p.remove();const receiver=basketReceiver();receiver.classList.remove('collecting');void receiver.offsetWidth;receiver.classList.add('collecting')}}
 function contaminate(){const b=basketTarget(session.basket).getBoundingClientRect(),shell=document.createElement('div');shell.className='ejected-shell';shell.style.left=`${b.left+b.width/2-12}px`;shell.style.top=`${b.top-4}px`;document.body.append(shell);const animation=shell.animate([{transform:'translate(0,0) rotate(-5deg) scale(1)',opacity:1},{transform:'translate(0,-5px) rotate(8deg) scale(1.25)',opacity:1,offset:.3},{transform:compactMode()?'translate(42px,48px) rotate(55deg) scale(1.1)':'translate(42px,-48px) rotate(55deg) scale(1.1)',opacity:1,offset:.65},{transform:'translate(72px,0) rotate(110deg) scale(.7)',opacity:0}],{duration:950,fill:'forwards',easing:'ease-out'});animation.onfinish=()=>shell.remove()}
 function selectCreature(c,now){
- if(!session||session.finished||!flow.canSelect||transition||c.parked||c.state!=='active'||now<c.readyAt||now<c.lockedUntil||!creatures.includes(c)||session.helpOpen)return;
+ if(storm||!session||session.finished||!flow.canSelect||transition||c.parked||c.state!=='active'||now<c.readyAt||now<c.lockedUntil||!creatures.includes(c)||session.helpOpen)return;
  if(!session.remaining(now)){finish(false,now);return}
  const correct=c.triangle.accepted.includes(session.order[session.index]),hadShell=session.basket>0,result=session.select(correct);c.lockedUntil=now+GAME_CONFIG.protection*1000;
  if(correct){recentPicks.push({x:c.x,y:c.y,radius:c.radius,at:now});recentPicks=recentPicks.slice(-24);collect(c);remove(c);tone('good');if(result==='order'){beginValidation(now);$('toast').hidden=true}else toast(`Bien vu ! +${GAME_CONFIG.correctPoints} points`,.8)}
@@ -493,11 +503,63 @@ document.addEventListener('pointerdown',e=>{heldPointers.add(e.pointerId);rememb
 // 9. Aide contextuelle : exemples adaptés au mode, pénalité une seule fois.
 const HELP={any:'Dans ce jeu, on appelle quelconque un triangle dont les codages ne montrent aucune propriété particulière. Sans codage, tu peux le choisir pour cette commande. Attention : l’absence de marques ne prouve pas que les côtés sont différents ! Les figures de cette famille sont cependant construites sans égalité ni angle droit.',iso:'Un triangle isocèle possède au moins deux côtés de même longueur. Deux côtés portant les mêmes traits, ou deux angles portant les mêmes arcs, permettent de le reconnaître. Un équilatéral et un rectangle isocèle sont aussi isocèles.',equ:'Un triangle équilatéral possède trois côtés égaux. Les trois côtés portent les mêmes traits, ou les trois angles portent les mêmes arcs. Deux marques identiques seulement ne suffisent pas à le prouver. Un équilatéral est aussi isocèle.',right:'Un triangle rectangle possède un angle droit, indiqué par un petit carré. Même si la forme te paraît rectangle, il faut voir ce carré ! Un rectangle isocèle est aussi rectangle.',rightIso:'Un triangle rectangle isocèle possède un angle droit et deux côtés égaux. Repère le carré, puis les mêmes traits sur les deux côtés de l’angle droit, ou les mêmes arcs sur les deux angles aigus. Il est à la fois rectangle et isocèle.'};
 function openDialog(title,html){closeCompactMenu();modalFocus=compactMode()?$('compact-menu-toggle'):document.activeElement;$('dialog-title').textContent=title;$('dialog-content').innerHTML=html;$('modal').hidden=false;$('close-dialog').focus()}
-function closeDialog(){if($('modal').hidden)return;$('modal').hidden=true;if(session)session.helpOpen=false;field.inert=gameClock.frozen||!!transition;if(modalFocus?.isConnected)modalFocus.focus()}
-$('close-dialog').onclick=closeDialog;$('modal').onclick=e=>{if(e.target===$('modal'))closeDialog()};document.addEventListener('keydown',e=>{if($('modal').hidden)return;if(e.key==='Escape')closeDialog();if(e.key==='Tab'){e.preventDefault();$('close-dialog').focus()}});
-$('help').onclick=()=>{if(!session||session.finished||!$('modal').hidden||transition)return;if(!session.remaining(gameNow())){finish(false,gameNow());return}if(!session.openHelp())return;const f=session.order[session.index],m=mode==='mixed'?'sides':mode,good=makeTriangle(f,m,2),counter=makeTriangle(f==='any'?'iso':f==='rightIso'?'right':'any',mode==='mixed'?'angles':mode,2);let html=`<p>${HELP[f]}</p><div class="examples"><div class="example good">${triangleSVG(good)}<b>✓ Tu peux le choisir</b></div><div class="example bad">${triangleSVG(counter)}<b>✕ Ne convient pas</b></div>`;if(mode==='mixed')html+=`<div class="example good">${triangleSVG(makeTriangle(f,'angles',2))}<b>✓ Avec des arcs</b></div>`;html+='</div><p class="note">Compare le nombre de traits ou d’arcs. Tourner un triangle ne change pas ses propriétés. Cette ouverture coûte 10 points ; le temps continue.</p>';openDialog(LABELS[f],html);updateHUD(gameNow())};
+function closeDialog(){$('close-dialog').textContent='C’est compris !';if($('modal').hidden)return;$('modal').hidden=true;if(session)session.helpOpen=false;field.inert=gameClock.frozen||!!transition||!!storm;if(modalFocus?.isConnected)modalFocus.focus()}
+$('close-dialog').onclick=closeDialog;$('modal').onclick=e=>{if(e.target===$('modal'))closeDialog()};document.addEventListener('keydown',e=>{if($('modal').hidden)return;if(e.key==='Escape')closeDialog();if(e.key==='Tab'){const buttons=[...$('modal').querySelectorAll('button:not([disabled])')];const i=buttons.indexOf(document.activeElement);e.preventDefault();buttons[(i+(e.shiftKey?-1:1)+buttons.length)%buttons.length].focus()}});
+$('help').onclick=()=>{if(storm)return;if(!session||session.finished||!$('modal').hidden||transition)return;if(!session.remaining(gameNow())){finish(false,gameNow());return}if(!session.openHelp())return;const f=session.order[session.index],m=mode==='mixed'?'sides':mode,good=makeTriangle(f,m,2),counter=makeTriangle(f==='any'?'iso':f==='rightIso'?'right':'any',mode==='mixed'?'angles':mode,2);let html=`<p>${HELP[f]}</p><div class="examples"><div class="example good">${triangleSVG(good)}<b>✓ Tu peux le choisir</b></div><div class="example bad">${triangleSVG(counter)}<b>✕ Ne convient pas</b></div>`;if(mode==='mixed')html+=`<div class="example good">${triangleSVG(makeTriangle(f,'angles',2))}<b>✓ Avec des arcs</b></div>`;html+='</div><p class="note">Compare le nombre de traits ou d’arcs. Tourner un triangle ne change pas ses propriétés. Cette ouverture coûte 10 points ; le temps continue.</p>';openDialog(LABELS[f],html);updateHUD(gameNow())};
 $('rules').onclick=()=>openDialog('Bienvenue au restaurant !','<p>Le chef passe <b>5 commandes dans un ordre aléatoire</b>. Pour chacune, récolte <b>10 bonnes créatures</b> en cliquant ou en touchant leur triangle. Tu as 10 minutes pour tout livrer.</p><p><b>Les codages font foi.</b> Des traits identiques indiquent des côtés égaux ; des arcs identiques indiquent des angles égaux. Un petit carré indique un angle droit. Aucun calcul n’est nécessaire.</p><p>Un équilatéral est aussi isocèle. Un rectangle isocèle est à la fois rectangle et isocèle. En mode mixte, une même figure utilise une seule sorte de marques d’égalité.</p><p class="note">Dans ce jeu, « quelconque » signifie que les codages ne montrent aucune propriété particulière. Sans codage, le triangle est accepté pour cette commande. Cela ne prouve pas, en général, que ses côtés sont différents.</p><p>Bonne réponse : <b>+20</b>. Erreur : <b>−30</b> et un coquillage expulsé du panier. Panier livré : <b>+50</b>. Aide : <b>−10</b>, sans arrêter le temps. Si tu termines, chaque seconde restante rapporte <b>1 point</b>. Le score final reste au moins égal à zéro.</p><p>Les petites créatures changent régulièrement : prends le temps de lire ! Le son est facultatif et le meilleur score est conservé uniquement sur cet appareil.</p>');
 $('hero').innerHTML=triangleSVG(makeTriangle('iso','sides'),'crab','#f4ad8a')+triangleSVG(makeTriangle('rightIso','angles'),'shell','#ffe1a0')+triangleSVG(makeTriangle('equ','sides'),'fish','#8ad3be');
+// Parcours facultatif, mêmes générateurs et mêmes codages que dans la partie.
+const DISCOVERY_ORDER=['equ','iso','right','rightIso','any'];
+const DISCOVERY_TEXT={equ:'Trois côtés de même longueur et trois angles égaux : chacun mesure 60°.',iso:'Au moins deux côtés de même longueur et deux angles égaux. Un triangle équilatéral est également isocèle.',right:'Un angle droit de 90°. Le petit carré code cet angle droit : repère-le sur la figure.',rightIso:'Un angle droit, deux côtés égaux et deux angles de 45°. Ce triangle appartient à la fois aux familles rectangle et isocèle.',any:'Dans la classification de ce jeu : trois côtés de longueurs différentes et aucun angle droit. Le terme « scalène » signifie seulement trois côtés différents : un triangle scalène peut donc être rectangle.'};
+let discoveryStep=0;
+function showDiscovery(){
+ const f=DISCOVERY_ORDER[discoveryStep],counter=f==='any'?'iso':f==='rightIso'?'right':'any';
+ openDialog('Triangle '+SHORT_LABELS[f].toLocaleLowerCase('fr'),`<div class="discovery-progress">${discoveryStep+1} / 5 · Découvrir les triangles</div><p>${DISCOVERY_TEXT[f]}</p><div class="examples"><div class="example good">${triangleSVG(makeTriangle(f,'sides',2))}<b>✓ Exemple</b><p>${SHORT_LABELS[f]}</p></div><div class="example good">${triangleSVG(makeTriangle(f,'angles',2))}<b>✓ Codage des angles</b></div><div class="example bad">${triangleSVG(makeTriangle(counter,'sides',2))}<b>✕ Non-exemple</b><p>${SHORT_LABELS[counter]} : ${f==='any'?'deux côtés égaux':f==='rightIso'?'pas deux côtés égaux':f==='right'?'aucun angle droit':'pas les égalités requises'}</p></div></div><div class="discovery-nav"><button id="discovery-prev" class="secondary" ${discoveryStep===0?'disabled':''}>← Précédent</button><button id="discovery-next" class="secondary">${discoveryStep===4?'Retour à l’accueil':'Suivant →'}</button></div>`);
+ $('close-dialog').textContent='Retour à l’accueil';
+ $('discovery-prev').onclick=()=>{discoveryStep--;showDiscovery();$('discovery-prev').disabled?$('discovery-next').focus():$('discovery-prev').focus()};
+ $('discovery-next').onclick=()=>{if(discoveryStep===4){closeDialog();$('discover').focus()}else{discoveryStep++;showDiscovery();$('discovery-next').focus()}};
+}
+$('discover').onclick=()=>{discoveryStep=0;showDiscovery()};
+function setReduced(value){reduced=value;$('reduce-motion').checked=value;$('compact-reduce').checked=value;document.body.classList.toggle('gentle',value);if(value)for(const c of creatures){c.rotation=0;c.still=true}}
+$('reduce-motion').onchange=e=>setReduced(e.target.checked);$('compact-reduce').onchange=e=>setReduced(e.target.checked);setReduced(reduced);
+// Tempêtes brèves : l'horloge de session s'arrête, l'horloge d'animation continue.
+let storm=null,nextStorm=0;
+const stormStatus=document.createElement('div');stormStatus.className='storm-status';stormStatus.hidden=true;stormStatus.setAttribute('role','status');$('game').append(stormStatus);
+function stormReveal(now){if(!storm)return 1;const p=(now-storm.started)/storm.duration;return p<.35?1-clamp((p-.12)/.23,0,1):clamp((p-.65)/.35,0,1)}
+function resetStorm(){if(storm&&session)session.resume(gameNow());storm=null;nextStorm=0;stormStatus.hidden=true;field.inert=gameClock.frozen||!!transition}
+function updateStorm(now,dt){
+ if(!activeGame()||level!==3)return;
+ if(!nextStorm)nextStorm=now+rand(...LEVEL_CONFIG[3].stormEvery)*1000;
+ if(!storm&&now>=nextStorm&&!transition&&!session.helpOpen&&!heldPointers.size){storm={started:now,duration:LEVEL_CONFIG[3].stormDuration*1000};session.pause(now);field.inert=true;heldPointers.clear();for(const c of creatures)c.press=null;stormStatus.hidden=false;stormStatus.textContent='La tempête passe… le chronomètre est en pause.';thunder()}
+ if(storm&&now-storm.started>=storm.duration){session.resume(now);storm=null;nextStorm=now+rand(...LEVEL_CONFIG[3].stormEvery)*1000;stormStatus.hidden=true;field.inert=gameClock.frozen||!!transition;for(const c of creatures)c.readyAt=Math.max(c.readyAt,now+300)}
+}
+// Sons originaux synthétisés localement, uniquement après activation volontaire.
+let audioMaster=null,ambience=null,volume=.35,nextMusic=0,musicIndex=0;
+function ensureAudio(){
+ audio=audio||new(window.AudioContext||window.webkitAudioContext)();
+ if(!audioMaster){audioMaster=audio.createGain();audioMaster.gain.value=0;audioMaster.connect(audio.destination)}
+ if(audio.state==='suspended')audio.resume().catch(()=>{});
+ audioMaster.gain.setTargetAtTime(soundOn?volume:0,audio.currentTime,.25);
+ if(!ambience){const buffer=audio.createBuffer(1,audio.sampleRate*4,audio.sampleRate),data=buffer.getChannelData(0);let last=0;for(let i=0;i<data.length;i++){last=(last+Math.random()*.04-.02)/1.02;data[i]=last*3}const source=audio.createBufferSource(),filter=audio.createBiquadFilter(),gain=audio.createGain();source.buffer=buffer;source.loop=true;filter.type='lowpass';filter.frequency.value=700;gain.gain.value=0;source.connect(filter);filter.connect(gain);gain.connect(audioMaster);source.start();ambience={source,filter,gain}}
+}
+document.querySelectorAll('.volume').forEach(input=>input.oninput=()=>{volume=Number(input.value)/100;document.querySelectorAll('.volume').forEach(x=>x.value=input.value);if(audioMaster)audioMaster.gain.setTargetAtTime(soundOn?volume:0,audio.currentTime,.15)});
+function updateAmbience(now){
+ if(!soundOn||!audioMaster||gameClock.frozen)return;
+ const playing=activeGame(),t=audio.currentTime,settings=LEVEL_CONFIG[level];
+ ambience.gain.gain.setTargetAtTime(playing?(level===1?.13:level===2?.2:.27)*(.7+.3*Math.sin(now/1600)**2):0,t,.7);
+ ambience.filter.frequency.setTargetAtTime(level===1?550:level===2?850:1200,t,1);
+ if(playing&&level===1&&now>=nextMusic){nextMusic=now+650;const melody=[60,64,67,69,67,64,62,67,64,60,62,64,67,64,62,60],hz=440*2**((melody[musicIndex++%melody.length]-69)/12),osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.value=hz;gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.027,t+.04);gain.gain.exponentialRampToValueAtTime(.0001,t+.6);osc.connect(gain);gain.connect(audioMaster);osc.start(t);osc.stop(t+.65)}
+}
+function thunder(){if(!soundOn||!audioMaster)return;const t=audio.currentTime+.35,source=audio.createBufferSource(),filter=audio.createBiquadFilter(),gain=audio.createGain();source.buffer=ambience.source.buffer;filter.type='lowpass';filter.frequency.value=160;gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.35,t+.35);gain.gain.exponentialRampToValueAtTime(.0001,t+2.8);source.connect(filter);filter.connect(gain);gain.connect(audioMaster);source.start(t);source.stop(t+3)}
+function drawBeachExtras(time){
+ const w=viewW,h=viewH,agitation=LEVEL_CONFIG[level].sea;
+ // Petits animaux au bord de l'image, derrière les figures et sans zone de clic.
+ for(let i=0;i<4;i++){const x=w*(i%2?.96:.035),y=waterline+(h-waterline)*(.38+Math.floor(i/2)*.4);ctx.save();ctx.translate(x,y);ctx.rotate(i+.1*Math.sin(time*.1));ctx.fillStyle=i%2?'#d98c70aa':'#deaa76bb';ctx.beginPath();for(let k=0;k<10;k++){const a=-Math.PI/2+k*Math.PI/5,r=k%2?4:10;ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r)}ctx.closePath();ctx.fill();ctx.restore()}
+ for(let i=0;i<2;i++){const x=w*(i?.94:.06)+Math.sin(time*.22*agitation+i)*7,y=h*.88+Math.sin(time*.3+i)*2;ctx.save();ctx.translate(x,y);ctx.strokeStyle='#906b55aa';ctx.lineWidth=1.4;for(const side of [-1,1])for(let k=0;k<4;k++){const step=reduced?0:Math.sin(time*agitation*2+k)*2;ctx.beginPath();ctx.moveTo(side*3,k-3);ctx.lineTo(side*(10+k),k*3-8+step);ctx.lineTo(side*(15+k),k*4-6);ctx.stroke()}ctx.fillStyle='#bd9673bb';ctx.beginPath();ctx.ellipse(0,0,5,7,0,0,Math.PI*2);ctx.fill();ctx.restore()}
+ if(level===3){ctx.fillStyle='#24394f';ctx.globalAlpha=.16;ctx.fillRect(0,0,w,h);ctx.globalAlpha=1;ctx.strokeStyle='#e1f0dd35';ctx.lineWidth=1;for(let i=0;i<9;i++){const x=(i*137+time*(reduced?4:40))%(w+90)-45,y=25+(i*41)%Math.max(30,waterline);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+25,y-5);ctx.stroke()}}
+ if(storm){const p=(time*1000-storm.started)/storm.duration;ctx.fillStyle='#16283f';ctx.globalAlpha=Math.sin(clamp(p,0,1)*Math.PI)*.18;ctx.fillRect(0,0,w,h);ctx.globalAlpha=1;if(!reduced&&p>.14&&p<.27){ctx.strokeStyle='#ffefbc';ctx.lineWidth=3;ctx.globalAlpha=Math.sin((p-.14)/.13*Math.PI)*.65;ctx.beginPath();ctx.moveTo(w*.71,0);ctx.lineTo(w*.68,h*.09);ctx.lineTo(w*.72,h*.08);ctx.lineTo(w*.67,h*.2);ctx.stroke();ctx.globalAlpha=1}}
+}
+
 // 10. Décor illustré intégré, eau et faune dessinées en couches indépendantes.
 const canvas=$('world'),ctx=canvas.getContext('2d'),sceneImage=$('scenery');
 const sceneryCache=document.createElement('canvas');let viewW=0,viewH=0,sceneDirty=true,waterline=0;
@@ -517,20 +579,21 @@ function cacheScenery(){
  sceneDirty=false;
 }
 function waveY(x,t,offset=0){
- const phase=t/GAME_CONFIG.wavePeriod*Math.PI*2;
+ const agitation=LEVEL_CONFIG[level].sea;
+ const phase=t*agitation/GAME_CONFIG.wavePeriod*Math.PI*2;
  const rush=(1-Math.cos(phase))*.5;
- return waterline-8+offset+rush*GAME_CONFIG.waveIntensity+Math.sin(x/147+.5)*7+Math.sin(x/61+phase*.32)*4+Math.sin(x/19-phase*.5)*1.8;
+ return waterline-8+offset+rush*GAME_CONFIG.waveIntensity*agitation+Math.sin(x/147+.5)*7+Math.sin(x/61+phase*.32)*4+Math.sin(x/19-phase*.5)*1.8;
 }
 function wavePath(t,offset=0){ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(viewW,0);for(let x=viewW;x>=-12;x-=10)ctx.lineTo(x,waveY(x,t,offset));ctx.closePath()}
 function decorativeFish(x,y,size,color,phase){ctx.save();ctx.translate(x,y);ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(0,0,size,size*.39,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.moveTo(-size*.7,0);ctx.quadraticCurveTo(-size*1.3,-size*.2,-size*1.6,-size*.6*Math.cos(phase));ctx.quadraticCurveTo(-size*1.8,0,-size*1.6,size*.6*Math.cos(phase));ctx.closePath();ctx.fill();ctx.fillStyle='#fff2cb99';ctx.beginPath();ctx.ellipse(size*.25,-size*.16,size*.09,size*.09,0,0,Math.PI*2);ctx.fill();ctx.restore()}
 function decorativeTurtle(x,y,t){ctx.save();ctx.translate(x,y);ctx.rotate(-.2);ctx.fillStyle='#537e60aa';for(const side of [-1,1])for(const sign of [-1,1]){ctx.save();ctx.translate(sign*10,side*8);ctx.rotate(sign*side*.4+Math.sin(t*2)*.15);ctx.beginPath();ctx.ellipse(0,0,7,3,side,0,Math.PI*2);ctx.fill();ctx.restore()}ctx.fillStyle='#7b9f71bb';ctx.beginPath();ctx.ellipse(17,0,5,4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#527f65aa';ctx.beginPath();ctx.ellipse(0,0,14,10,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#a5c59288';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(0,0,9,7,0,0,Math.PI*2);ctx.stroke();ctx.restore()}
 function beach(time){
- if(sceneDirty)cacheScenery();const t=reduced?0:time,w=viewW,h=viewH;
+ if(sceneDirty)cacheScenery();const t=reduced?0:time*LEVEL_CONFIG[level].sea,w=viewW,h=viewH;
  ctx.drawImage(sceneryCache,0,0);
  // Le ressac étire légèrement la couche d'eau illustrée, puis dépose plusieurs
  // franges transparentes et des îlots d'écume. Le sable et la végétation restent fixes.
  const surge=(1-Math.cos(t/GAME_CONFIG.wavePeriod*Math.PI*2))*.5*GAME_CONFIG.waveIntensity;
- ctx.save();wavePath(t,-5);ctx.clip();ctx.globalAlpha=.78;ctx.drawImage(sceneryCache,0,0,w,waterline+24,0,0,w,waterline+24+surge*.65);ctx.restore();
+ // Seuls les reflets et les franges du ressac bougent ; le bitmap reste fixe.
  for(let layer=0;layer<3;layer++){
   ctx.beginPath();for(let x=0;x<=w+10;x+=10){const y=waveY(x,t,layer*5);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}
   for(let x=w+10;x>=0;x-=10)ctx.lineTo(x,waveY(x,t,layer*5-14));ctx.closePath();
@@ -542,17 +605,20 @@ function beach(time){
  // Caustiques : petits reflets irréguliers, pas de lignes horizontales continues.
  ctx.strokeStyle='#ddfff139';ctx.lineWidth=1;for(let i=0;i<32;i++){const x=(i*197.3)%w,y=22+(i*61.1)%Math.max(30,waterline-60),a=t*.45+i;ctx.beginPath();ctx.ellipse(x+Math.sin(a)*5,y,15+Math.sin(a)*4,5,Math.sin(i)*.2,0,Math.PI*1.35);ctx.stroke()}
  // Bancs de petits poissons, une tortue et quelques bulles, tous sans codage.
- for(let i=0;i<7;i++){const x=((t*(8+i%3)+i*28+w*.45)%(w+120))-60,y=waterline*.35+Math.sin(i*2)*18;decorativeFish(x,y,5+i%3,'#166c7080',t*5+i)}
+ for(let i=0;i<7;i++){ctx.globalAlpha=stormReveal(time*1000);const x=((t*(8+i%3)+i*28+w*.45)%(w+120))-60,y=waterline*.35+Math.sin(i*2)*18;decorativeFish(x,y,5+i%3,'#166c7080',t*5+i)}
+ ctx.globalAlpha=1;
  decorativeTurtle((w*.16+t*5)%(w+50)-25,waterline*.65,t);
  ctx.strokeStyle='#e7fff3a0';ctx.lineWidth=1;for(let i=0;i<12;i++){const y=waterline-((t*9+i*37)%Math.max(40,waterline-25));const x=(i*181+Math.sin(t+i)*8)%w;ctx.beginPath();ctx.arc(x,y,1.3+i%3,0,Math.PI*2);ctx.stroke()}
  // Deux oiseaux passent au-dessus du large.
  ctx.strokeStyle='#fff7dbbb';ctx.lineWidth=2;for(let i=0;i<2;i++){const x=(t*21+i*53)%(w+70)-35,y=38+Math.sin(t*.6+i)*9;ctx.beginPath();ctx.moveTo(x-9,y+Math.sin(t*3)*3);ctx.quadraticCurveTo(x-4,y-5,x,y);ctx.quadraticCurveTo(x+4,y-5,x+9,y+Math.sin(t*3)*3);ctx.stroke()}
+ drawBeachExtras(time);
  // Traces temporaires de pattes, rendues derrière les triangles.
  tracks=tracks.filter(p=>time-p.time<5);for(const p of tracks){ctx.fillStyle='rgba(147,103,55,'+(.14*(1-(time-p.time)/5))+')';for(const side of [-1,1]){ctx.beginPath();ctx.ellipse(fieldRect.left+p.x,fieldRect.top+p.y+side*8,2.6,1.1,side*.5,0,Math.PI*2);ctx.fill()}}
 }
 // 11. Cycle de vie et déplacements physiques : les corps codés ne se recouvrent pas.
 function updateCreature(c,now,dt){
  if(c.parked)return;
+ if(storm){for(const key of ["born","readyAt","expires","leaveAt","lockedUntil","sickUntil","lastTrack"])if(Number.isFinite(c[key]))c[key]+=dt*1000;c.el.classList.add("unavailable");c.el.tabIndex=-1;c.el.style.opacity=String(stormReveal(now));return;}
  const age=(now-c.born)/1000,emergence=c.emergence;
  if(c.state==='entering'&&age>=emergence)c.state='active';
  if(c.state==='active'&&now>=c.expires&&!transition&&!session.helpOpen&&!heldPointers.size&&!c.focused&&now>=c.lockedUntil){c.state='leaving';c.leaveAt=now}
@@ -580,7 +646,7 @@ function frame(wall){
  if(activeGame()&&!gameClock.frozen&&wall-lastWall>1000)hold('background',lastWall);
  lastWall=wall;const now=gameClock.now(wall),dt=Math.min(Math.max(0,(now-lastFrame)/1000),.04);lastFrame=now;
  if(gameClock.frozen){if(sceneDirty)beach(now/1000);requestAnimationFrame(frame);return}
- runEffects(now);beach(now/1000);
+ runEffects(now);updateStorm(now,dt);updateAmbience(now);beach(now/1000);
  if(compactMenuUntil&&now>compactMenuUntil&&!document.activeElement?.closest?.('#compact-menu'))closeCompactMenu();
  if(session&&!session.finished){
   animateTransition(now);
